@@ -15,12 +15,12 @@ public class Plant : ScriptableObject
         public Sprite wilted;
     }
     public enum Type { carrot, potato, tomato}
-    public enum growthStage { seed, sprout, mature, wilted}
+    public enum GrowthStage { seed, sprout, mature, wilted}
 
     [SerializeField] Type type;
-    [SerializeField] growthStage currentStage;
+    public GrowthStage currentStage { get; private set; }
     [SerializeField] float stageTimeLength;
-    bool growing;
+    bool growing = true;
     float currentStateCountdown;
     Plot currentPlot;
     [SerializeField] plantSprites sprites;
@@ -29,26 +29,29 @@ public class Plant : ScriptableObject
     public void PlantInPlot(Plot newPlot)
     {
         currentPlot = newPlot;
+        growing = true;
+        currentStage = GrowthStage.seed;
+        currentStateCountdown = stageTimeLength;
     }
     public Sprite GetCurrentSprite()
     {
         switch (currentStage) {
-            case growthStage.seed:
+            case GrowthStage.seed:
                 return sprites.seed;
-            case growthStage.sprout:
+            case GrowthStage.sprout:
                 return sprites.sprout;
-            case growthStage.mature:
+            case GrowthStage.mature:
                 return sprites.mature;
-            case growthStage.wilted:
+            case GrowthStage.wilted:
                 return sprites.wilted;
         }
+        Debug.Log("No growth stage");
         return null;
     }
 
     public void Countdown(float time)
     {
         if (!growing) return;
-
         currentStateCountdown -= time;
         if (currentStateCountdown <= 0) AdvanceToNextStage();
     }
@@ -56,12 +59,11 @@ public class Plant : ScriptableObject
     void AdvanceToNextStage()
     {
         currentStage += 1;
-        if (currentStage == growthStage.wilted) 
+        if (currentStage == GrowthStage.wilted) 
         { 
             growing = false;
-            return; 
         }
-        currentStateCountdown = currentStage == growthStage.wilted ? stageTimeLength * 5 : stageTimeLength;
+        currentStateCountdown = currentStage == GrowthStage.mature ? stageTimeLength * 5 : stageTimeLength;
         currentPlot.PlantAdvance();
     }
 }

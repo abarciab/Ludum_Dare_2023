@@ -377,6 +377,9 @@ GameObject:
   - component: {fileID: 1792673573}
   - component: {fileID: 1792673572}
   - component: {fileID: 1792673576}
+  - component: {fileID: 1792673577}
+  - component: {fileID: 1792673578}
+  - component: {fileID: 1792673579}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -404,7 +407,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &1792673573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -417,7 +420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3b598fa1d87a8c47a4e649f9669a6de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 800
+  walkSpeed: 450
   friction: 0.05
 --- !u!212 &1792673574
 SpriteRenderer:
@@ -498,6 +501,156 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40e90a2d3bfe06e4eaa29803035e0c60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nearbyCrop: {fileID: 0}
+  toPlant: {fileID: 11400000, guid: c4383a824564cea49b9be0b485c7056f, type: 2}
+--- !u!61 &1792673577
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1792673571}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.9279761, y: 1.9279761}
+  m_EdgeRadius: 0
+--- !u!61 &1792673578
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1792673571}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!82 &1792673579
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1792673571}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 43e574cc5b0561545b1c315a577bb497, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.131
+  m_Pitch: 2.65
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &2135021302
 GameObject:
   m_ObjectHideFlags: 0
@@ -639,6 +792,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69a42998cdf74d843a16b37f79016909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds: []
+  sounds:
+  - name: plantGrow
+    ID: 0
+    clip: {fileID: 8300000, guid: 46c845d9776f4ca459cff8295da42f15, type: 3}
+    volume: 1
+    pitch: 1
+    looping: 0
+  - name: ding
+    ID: 1
+    clip: {fileID: 8300000, guid: 7af98373c49ee2e49a1fe832daf3761f, type: 3}
+    volume: 0.497
+    pitch: 0.84
+    looping: 0
   music: {fileID: 519420033}
   global: {fileID: 2135021304}
