@@ -4,26 +4,30 @@ using UnityEngine;
 
 public class Gardener : MonoBehaviour
 {
+    [System.Serializable]
+    public class SeedPlantPair
+    {
+        public ItemObject seed;
+        public Plant plant;
+    }
+
     [SerializeField] Plot nearbyCrop;
     [SerializeField] Plant toPlant;
+    [SerializeField] ItemObject wateringCan;
+    [SerializeField] List<SeedPlantPair> seedPlantList = new List<SeedPlantPair>();
     
-    private void OnTriggerEnter2D(Collider2D collision)
+    public Plant GetSelectedSeedPlant()
     {
-        if (collision.GetComponent<Plot>()) {
-            nearbyCrop = collision.GetComponent<Plot>();
+        var heldItem = GameManager.instance.inventory.selectedItem;
+        for (int i = 0; i < seedPlantList.Count; i++) {
+            if (seedPlantList[i].seed == heldItem) return seedPlantList[i].plant;
         }
+        return null;
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    public bool HoldingWateringCan()
     {
-        if (collision.GetComponent<Plot>()) {
-            nearbyCrop = null;
-        }
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E) && nearbyCrop != null)
-            nearbyCrop.Interact(toPlant);
+        if (GameManager.instance.inventory.selectedItem == wateringCan) return true;
+        return false;
     }
 }

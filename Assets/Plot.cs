@@ -8,19 +8,27 @@ public class Plot : MonoBehaviour
 {
     public enum plotStatus { raw, tilled, planted}
     [SerializeField] bool watered;
-    [SerializeField] Plant currentPlant;
+    Plant currentPlant;
+    [SerializeField] Sprite drySoil;
+    [SerializeField] Sprite wetSoil;
+
+    //dependencies
     SpriteRenderer plotImg;
     [SerializeField] SpriteRenderer plantImg;
     AudioSource source;
+    Gardener gardener;
 
     private void Start()
     {
         source = GetComponent<AudioSource>();
+        gardener = FindObjectOfType<Gardener>();
+        plotImg = GetComponent<SpriteRenderer>();
     }
 
     void Update()
     {
-        if (currentPlant) GrowPlant();
+        if (currentPlant && watered) GrowPlant();
+        plotImg.sprite = watered ? wetSoil : drySoil;
     }
 
     void GrowPlant()
@@ -41,8 +49,9 @@ public class Plot : MonoBehaviour
         AudioManager.instance.PlayHere(0, source);
     }
 
-    public void PlantHere(Plant plant)
+    public void PlantHere(Plant _plant)
     {
+        var plant = Instantiate(_plant);
         plant.PlantInPlot(this);
         currentPlant = plant;
         UpdateVisuals();
@@ -56,7 +65,8 @@ public class Plot : MonoBehaviour
             UpdateVisuals();
             return;
         }
-        PlantHere(toPlant);
+        if (toPlant != null)
+            PlantHere(toPlant);
     }
 
     void RemoveCurrentPlant()
@@ -66,10 +76,20 @@ public class Plot : MonoBehaviour
             return;
         }
         if (currentPlant.currentStage == Plant.GrowthStage.mature) {
+            watered = false;
             AudioManager.instance.PlayGlobal(1);
             GameManager.instance.inventory.AddItem(currentPlant.plantItem);
             currentPlant = null;
             return;
         }
+    }
+
+    private void OnMouseDown()
+    {
+        if (Vector2.Distance(transform.position, GameManager.instance.player.transform.position) > GameManager.instance.playerReach) return;
+        if (gardener.HoldingWateringCan()) {
+            watered = true;
+        }
+        Interact(gardener.GetSelectedSeedPlant());
     }
 }

@@ -14,18 +14,33 @@ public class InventoryScript : MonoBehaviour {
     public int hotbarIndex;
     public ItemObject selectedItem;
 
+    private void Awake()
+    {
+        OnHotbarUpdate = null;
+    }
+
     void Start() {
-        // temp code to test
-        //ItemObject item = ScriptableObject.CreateInstance("ItemObject") as ItemObject;
-        //item.Init("test", "type");
-        //AddItem(item);
+        AddExistingItemsToHotbar();
         UpdateHotbar();
+    }
+
+    void AddExistingItemsToHotbar()
+    {
+        for (int i = 0; i < 7; i++) {
+            for (int j = 0; j < container.Count; j++) {
+                if (container[j].item.hotbarIndex == -1) {
+                    container[j].item.hotbarIndex = i;
+                    break;
+                }
+            }
+        }
     }
 
     public bool AddItem(ItemObject _item, int _amount=1) {
         for (int i = 0; i < container.Count; i++) {
             if (container[i].item == _item) {
                 container[i].AddAmount(_amount);
+                UpdateHotbar();
                 return true;
             }
         }
@@ -36,11 +51,11 @@ public class InventoryScript : MonoBehaviour {
         return true;
     }
 
-    public ItemObject GetItemInHotbarSlot(int hotbarSlot)
+    public InventorySlot GetItemInHotbarSlot(int hotbarSlot)
     {
         for (int i = 0; i < container.Count; i++) {
             if (container[i].item.hotbarIndex == hotbarSlot)
-                return container[i].item;
+                return container[i];
         }
         return null;
     }
@@ -68,9 +83,11 @@ public class InventoryScript : MonoBehaviour {
                 if (container[i].amount <= 0) {
                     container.RemoveAt(i);
                 }
+                UpdateHotbar();
                 return true;
             }
         }
+        UpdateHotbar();
         return false;
     }
 

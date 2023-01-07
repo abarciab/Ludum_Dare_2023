@@ -8,4 +8,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Farming.unity
+    guid: 26dfb43860cf8f948bd61cab5ad1d133
+  - enabled: 1
+    path: Assets/Scenes/Environment.unity
+    guid: 2f4b792f709d05144974c3e63ea70647
+  - enabled: 1
+    path: Assets/Scenes/CookingScene.unity
+    guid: 44a01012efd4e064cb1df317f5500e7c
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: a5decf4ba617481438d4c8b24f6bf643
   m_configObjects: {}

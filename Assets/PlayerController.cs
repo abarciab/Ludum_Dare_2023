@@ -31,13 +31,13 @@ public class PlayerController : MonoBehaviour
         var speed = new Vector2();
 
         if (Input.GetKey(KeyCode.W))
-            speed += (Vector2.up * walkSpeed * Time.deltaTime);
+            speed += (Vector2.up * walkSpeed);
         else if (Input.GetKey(KeyCode.S))
-            speed += (Vector2.down * walkSpeed * Time.deltaTime);
+            speed += (Vector2.down * walkSpeed);
         if (Input.GetKey(KeyCode.A))
-            speed += (Vector2.left * walkSpeed * Time.deltaTime);
+            speed += (Vector2.left * walkSpeed);
         else if (Input.GetKey(KeyCode.D))
-            speed += (Vector2.right * walkSpeed * Time.deltaTime);
+            speed += (Vector2.right * walkSpeed);
 
         rb.velocity = Vector2.Lerp(rb.velocity, speed, friction);
         if (speed != new Vector2()) PlayFootStepSound();
@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
     {
         fading = true;
         for (int i = 0; i < 20; i++) {
-            source.volume = Mathf.Lerp(source.volume, 0, 0.025f);
+            source.volume = Mathf.Lerp(source.volume, 0, 0.5f);
             yield return new WaitForEndOfFrame();
         }
         fading = false;
