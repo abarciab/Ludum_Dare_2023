@@ -6,6 +6,9 @@ using UnityEngine;
 public class ItemObject : ScriptableObject
 {
     public string itemName;
-    public int quantity;
     public string type;
+    public void Init(string _itemName, string _type) {
+        itemName = _itemName;
+        type = _type;
+    }
 }

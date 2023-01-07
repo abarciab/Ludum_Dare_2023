@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "New Inventory", menuName = "Inventory System/Inventory")]
-public class InventoryObject : ScriptableObject {
+// [CreateAssetMenu(fileName = "New Inventory", menuName = "Inventory System/Inventory")]
+public class InventoryObject : MonoBehaviour {
     public List<InventorySlot> container = new List<InventorySlot>();
     public void AddItem(ItemObject _item, int _amount=1) {
         for (int i = 0; i < container.Count; i++) {
@@ -31,17 +31,12 @@ public class InventorySlot
     }
 }
 
-public class GridMenuScript : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+/*
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    void InitInven() {
+        inventory = GameObject.Find("Inventory").GetComponent<InventoryObject>();
+        ItemObject item = ScriptableObject.CreateInstance("ItemObject") as ItemObject;
+        item.Init("test", "type");
+        inventory.AddItem(item);
     }
-}
+*/
