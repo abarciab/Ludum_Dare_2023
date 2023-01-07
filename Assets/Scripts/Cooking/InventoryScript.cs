@@ -111,7 +111,6 @@ public class InventoryScript : MonoBehaviour {
             freeSlot = i;
             for (int j = 0; j < container.Count; j++) {
                 if (container[j].invSlotIndex == i) {
-                    print("slot " + i + " is occupied");
                     freeSlot = -1;
                     break;
                 }
