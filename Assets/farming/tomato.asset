@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c406f24508a3ac4f80b992c78278f97, type: 3}
   m_Name: tomato
   m_EditorClassIdentifier: 
-  type: 2
+  plantItem: {fileID: 11400000, guid: 3ffff7d90025b2749840d599f9c4bd5b, type: 2}
   stageTimeLength: 5
   sprites:
     seed: {fileID: 21300000, guid: 5e3b731a6745da84e89c0b583648436c, type: 3}
