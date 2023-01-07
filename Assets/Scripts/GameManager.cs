@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
 
     //dependencies
     public InventoryScript inventory;
-    public GameObject player;
+    public GameObject player, invParent;
 
     private void Awake()
     {
@@ -85,6 +85,8 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.E)) invParent.SetActive(!invParent.activeInHierarchy);
+
         if (Input.GetKeyDown(KeyCode.R)) {
             SceneManager.LoadScene(0);
             SceneManager.LoadScene(1, LoadSceneMode.Additive);

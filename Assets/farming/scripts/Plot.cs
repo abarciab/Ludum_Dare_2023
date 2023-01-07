@@ -93,10 +93,11 @@ public class Plot : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (GameManager.instance.invParent.activeInHierarchy) return;
+
         if (Vector2.Distance(transform.position, GameManager.instance.player.transform.position) > GameManager.instance.playerReach) return;
         if (gardener.HoldingWateringCan()) {
             AudioManager.instance.PlayHere(2, source);
-            GameManager.instance.player.GetComponent<PlayerController>().TempDisable(GameManager.instance.wateringTime);
             StartCoroutine(waitThenWater());
         }
         Interact(gardener.GetSelectedSeedPlant());
@@ -104,7 +105,11 @@ public class Plot : MonoBehaviour
 
     IEnumerator waitThenWater()
     {
+        var controller = GameManager.instance.player.GetComponent<PlayerController>();
+        var inv = GameManager.instance.inventory;
+
+        controller.enabled = inv.enabled = false;
         yield return new WaitForSeconds(GameManager.instance.wateringTime);
-        watered = true;
+        watered = controller.enabled = inv.enabled = true;
     }
 }

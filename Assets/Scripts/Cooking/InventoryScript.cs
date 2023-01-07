@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Analytics;
 
@@ -25,6 +26,11 @@ public class InventoryScript : MonoBehaviour {
 
     void AddExistingItemsToHotbar()
     {
+        for (int i = 0; i < container.Count; i++) {
+            container[i].item.hotbarIndex = -1;
+            container[i].invSlotIndex = -1;
+        }
+
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < container.Count; j++) {
                 if (container[j].item.hotbarIndex == -1) {
@@ -33,7 +39,9 @@ public class InventoryScript : MonoBehaviour {
                 }
             }
         }
+        
     }
+
 
     public bool AddItem(ItemObject _item, int _amount=1) {
         for (int i = 0; i < container.Count; i++) {
@@ -43,11 +51,48 @@ public class InventoryScript : MonoBehaviour {
                 return true;
             }
         }
+
         _item.hotbarIndex = GetFreeHotbarSlot();
-        container.Add(new InventorySlot(_item, _amount));
+        int invSlotIndex = _item.hotbarIndex == -1 ? GetFreeInvSlot() : -1;
+        container.Add(new InventorySlot(_item, invSlotIndex, _amount));
         if (_item.hotbarIndex != -1) UpdateHotbar();
         
         return true;
+    }
+
+    
+
+    public void SetInvSlot(InventorySlot item, int slotIndex)
+    {
+        if (item == null) return;
+
+        for (int i = 0; i < container.Count; i++) {
+            if (item.item.name == container[i].item.name) {
+                container[i].invSlotIndex = slotIndex;
+                return;
+            }
+        }
+    }
+
+    public void SetHotbarSlot(InventorySlot item, int hotbarIndex)
+    {
+        if (item == null) return;
+
+        for (int i = 0; i < container.Count; i++) {
+            if (item.item.name == container[i].item.name) {
+                container[i].item.hotbarIndex = hotbarIndex;
+                return;
+            }
+        }
+    }
+
+    public InventorySlot GetItemInInventory(int _invSlotIndex)
+    {
+        for (int i = 0; i < container.Count; i++) {
+            if (container[i].invSlotIndex == _invSlotIndex)
+                return container[i];
+        }
+        return null;
     }
 
     public InventorySlot GetItemInHotbarSlot(int hotbarSlot)
@@ -59,20 +104,37 @@ public class InventoryScript : MonoBehaviour {
         return null;
     }
 
-    int GetFreeHotbarSlot()
+    public int GetFreeInvSlot()
     {
-        int freenum = -1;
-        for (int i = 0; i < 7; i++) {
-            freenum = i;
+        int freeSlot = 8;
+        for (int i = 8; i < 35; i++) {
+            freeSlot = i;
             for (int j = 0; j < container.Count; j++) {
-                if (container[j].item.hotbarIndex == i) {
-                    freenum = -1;
+                if (container[j].invSlotIndex == i) {
+                    print("slot " + i + " is occupied");
+                    freeSlot = -1;
                     break;
                 }
             }
-            if (freenum == i) break;
+            if (freeSlot == i) break;
         }
-        return freenum;
+        return freeSlot;
+    }
+
+    public int GetFreeHotbarSlot()
+    {
+        int freeSlot = -1;
+        for (int i = 0; i < 7; i++) {
+            freeSlot = i;
+            for (int j = 0; j < container.Count; j++) {
+                if (container[j].item.hotbarIndex == i) {
+                    freeSlot = -1;
+                    break;
+                }
+            }
+            if (freeSlot == i) break;
+        }
+        return freeSlot;
     }
 
     public ItemObject RemoveItem(ItemObject _item, int _amount=1) {
@@ -94,6 +156,7 @@ public class InventoryScript : MonoBehaviour {
     private void Update()
     {
         selectHotbarItem();
+        UpdateHotbar();
     }
 
     void selectHotbarItem()
@@ -105,7 +168,6 @@ public class InventoryScript : MonoBehaviour {
         if (scroll > 0) hotbarIndex -= 1;
         if (hotbarIndex < 0) hotbarIndex = 7;
         if (hotbarIndex > 7) hotbarIndex = 0;
-        if (scroll != 0) UpdateHotbar();
     }
 
     void HotbarHotkeys()
@@ -129,19 +191,21 @@ public class InventoryScript : MonoBehaviour {
 }
 
 [System.Serializable]
-public class InventorySlot
-{
+public class InventorySlot {
+    //[HideInInspector] public int invSlotIndex;
+    public int invSlotIndex;
     public ItemObject item;
     public int amount;
-    public InventorySlot(ItemObject _item, int _amount=1) {
+    public InventorySlot(ItemObject _item, int invSlotIndex, int _amount = 1)
+    {
         item = _item;
         amount = _amount;
     }
-    public void AddAmount(int value) {
+    public void AddAmount(int value)
+    {
         amount += value;
     }
 }
-
 /*
 
     void InitInven() {

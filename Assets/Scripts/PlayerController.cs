@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     AudioSource source;
     float originalVolume;
     bool fading;
-    bool enabled = true;
+
 
     void Start()
     {
@@ -24,7 +24,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (!enabled) return;
         HandleInput();
     }
 
@@ -44,20 +43,6 @@ public class PlayerController : MonoBehaviour
         rb.velocity = Vector2.Lerp(rb.velocity, speed, friction);
         if (speed != new Vector2()) PlayFootStepSound();
         else StopFoodSteps();
-    }
-
-    public void TempDisable(float time)
-    {
-        StartCoroutine(WaitThenEnable(time));
-    }
-
-    IEnumerator WaitThenEnable(float time)
-    {
-        enabled = false;
-        GetComponent<InventoryScript>().enabled = false;
-        yield return new WaitForSeconds(time);
-        enabled = true;
-        GetComponent<InventoryScript>().enabled = true;
     }
 
     void StopFoodSteps()
