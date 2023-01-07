@@ -16,9 +16,9 @@ public class InventoryScript : MonoBehaviour {
 
     void Start() {
         // temp code to test
-        ItemObject item = ScriptableObject.CreateInstance("ItemObject") as ItemObject;
-        item.Init("test", "type");
-        AddItem(item);
+        //ItemObject item = ScriptableObject.CreateInstance("ItemObject") as ItemObject;
+        //item.Init("test", "type");
+        //AddItem(item);
         UpdateHotbar();
     }
 

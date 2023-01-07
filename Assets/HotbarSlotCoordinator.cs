@@ -32,9 +32,11 @@ public class HotbarSlotCoordinator : MonoBehaviour
         if (selected.activeInHierarchy) inv.selectedItem = item;
         if (item == null) {
             itemImg.sprite = null;
+            itemImg.enabled = false;
             return;
         }
         itemImg.sprite = item.itemSprite;
+        itemImg.enabled = true;
     }
 
 }
