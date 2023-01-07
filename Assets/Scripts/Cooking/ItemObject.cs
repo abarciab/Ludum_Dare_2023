@@ -7,6 +7,7 @@ public class ItemObject : ScriptableObject
 {
 
     public int hotbarIndex = -1;
+    public Sprite itemSprite;
     public string itemName;
     public string type;
     public void Init(string _itemName, string _type) {

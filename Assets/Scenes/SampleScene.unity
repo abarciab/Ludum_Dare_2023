@@ -1382,8 +1382,8 @@ MonoBehaviour:
   frameTarget: 60
   textDisplaySpeed: 10
   mainText: {fileID: 663559751}
-  dialogueParent: {fileID: 0}
-  inventory: {fileID: 0}
+  dialogueParent: {fileID: 734685020}
+  inventory: {fileID: 1792673581}
 --- !u!4 &1147849514
 Transform:
   m_ObjectHideFlags: 0
