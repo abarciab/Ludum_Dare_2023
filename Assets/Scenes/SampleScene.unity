@@ -1273,7 +1273,7 @@ MonoBehaviour:
   textDisplaySpeed: 1
   mainText: {fileID: 663559751}
   dialogueParent: {fileID: 734685020}
-  clickCooldown: 0
+  wateringTime: 2
   inventory: {fileID: 1792673581}
   player: {fileID: 1792673571}
 --- !u!4 &1147849514
@@ -2628,6 +2628,12 @@ MonoBehaviour:
   - name: ding
     ID: 1
     clip: {fileID: 8300000, guid: 7af98373c49ee2e49a1fe832daf3761f, type: 3}
+    volume: 0.17
+    pitch: 0.84
+    looping: 0
+  - name: watering
+    ID: 2
+    clip: {fileID: 8300000, guid: ab7a4bcc83b3b0e40bbe2245a9616087, type: 3}
     volume: 0.17
     pitch: 0.84
     looping: 0

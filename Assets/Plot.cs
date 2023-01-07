@@ -11,10 +11,13 @@ public class Plot : MonoBehaviour
     Plant currentPlant;
     [SerializeField] Sprite drySoil;
     [SerializeField] Sprite wetSoil;
+    [SerializeField] float particleJiggleSpeed = 2;
+    [SerializeField] float particleJiggleScale = 2;
 
     //dependencies
     SpriteRenderer plotImg;
     [SerializeField] SpriteRenderer plantImg;
+    [SerializeField] GameObject ripeParticles;
     AudioSource source;
     Gardener gardener;
 
@@ -29,6 +32,7 @@ public class Plot : MonoBehaviour
     {
         if (currentPlant && watered) GrowPlant();
         plotImg.sprite = watered ? wetSoil : drySoil;
+        if (ripeParticles.activeInHierarchy) ripeParticles.transform.localEulerAngles = new Vector3(0, 0, Mathf.Sin(Time.time * particleJiggleSpeed) * particleJiggleScale);
     }
 
     void GrowPlant()
@@ -47,6 +51,8 @@ public class Plot : MonoBehaviour
     {
         UpdateVisuals();
         AudioManager.instance.PlayHere(0, source);
+        if (currentPlant.currentStage == Plant.GrowthStage.mature) ripeParticles.SetActive(true);
+        else ripeParticles.SetActive(false);
     }
 
     public void PlantHere(Plant _plant)
@@ -71,6 +77,7 @@ public class Plot : MonoBehaviour
 
     void RemoveCurrentPlant()
     {
+        ripeParticles.SetActive(false);
         if (currentPlant.currentStage == Plant.GrowthStage.wilted) {
             currentPlant = null;
             return;
@@ -88,8 +95,16 @@ public class Plot : MonoBehaviour
     {
         if (Vector2.Distance(transform.position, GameManager.instance.player.transform.position) > GameManager.instance.playerReach) return;
         if (gardener.HoldingWateringCan()) {
-            watered = true;
+            AudioManager.instance.PlayHere(2, source);
+            GameManager.instance.player.GetComponent<PlayerController>().TempDisable(GameManager.instance.wateringTime);
+            StartCoroutine(waitThenWater());
         }
         Interact(gardener.GetSelectedSeedPlant());
+    }
+
+    IEnumerator waitThenWater()
+    {
+        yield return new WaitForSeconds(GameManager.instance.wateringTime);
+        watered = true;
     }
 }

@@ -18,8 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject dialogueParent;
     bool displayingText;
     string currentLine;
-    [SerializeField] float clickCooldown = 0.5f;
-    float clickCountdown = 0.1f;
+    public float wateringTime = 2f;
     int convoIndex;
     List<string> lines;
 
@@ -36,7 +35,6 @@ public class GameManager : MonoBehaviour
     {
         SetFrameRate();
         EndConversation();
-        clickCooldown = 0;
     }
 
     void SetFrameRate()
