@@ -29,7 +29,7 @@ public class InventoryScript : MonoBehaviour {
             if (container[i].item == _item) {
                 container[i].AddAmount(_amount*-1);
                 if (container[i].amount <= 0) {
-                    container.Remove(i);
+                    container.RemoveAt(i);
                 }
                 return;
             }
