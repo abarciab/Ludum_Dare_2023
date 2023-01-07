@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,10 @@ using UnityEngine;
 // [CreateAssetMenu(fileName = "New Inventory", menuName = "Inventory System/Inventory")]
 public class InventoryScript : MonoBehaviour {
     public List<InventorySlot> container = new List<InventorySlot>();
+    
+    //hotbar
+    public static Action OnHotbarUpdate;
+    public int hotbarIndex;
 
     void Start() {
         // temp code to test
@@ -34,6 +39,26 @@ public class InventoryScript : MonoBehaviour {
                 return;
             }
         }
+    }
+
+    private void Update()
+    {
+        
+    }
+
+    void ScrollHotBar()
+    {
+        var scroll = Input.mouseScrollDelta.y;
+        if (scroll > 0) hotbarIndex += 1;
+        if (scroll < 0) hotbarIndex -= 1;
+        if (hotbarIndex < 0) hotbarIndex = 8;
+        if (hotbarIndex > 8) hotbarIndex = 0;
+        if (scroll != 0) UpdateHotbar();
+    }
+
+    void UpdateHotbar()
+    {
+        if (OnHotbarUpdate != null) OnHotbarUpdate.Invoke();
     }
 }
 

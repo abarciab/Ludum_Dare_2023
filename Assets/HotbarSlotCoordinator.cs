@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class HotbarSlotCoordinator : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] GameObject selected;
+    [SerializeField] int index;
+    InventoryScript inv;
+
+    private void Start()
     {
-        
+        inv = GameManager.instance.inventory;
+        index = transform.GetSiblingIndex();
+        InventoryScript.OnHotbarUpdate += UpdateDisplay;
     }
 
-    // Update is called once per frame
-    void Update()
+    void UpdateDisplay()
     {
-        
+        if (inv.hotbarIndex == index) selected.SetActive(true);
+        else selected.SetActive(false);
     }
+
 }
