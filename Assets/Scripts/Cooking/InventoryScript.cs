@@ -4,8 +4,16 @@ using UnityEngine;
 
 
 // [CreateAssetMenu(fileName = "New Inventory", menuName = "Inventory System/Inventory")]
-public class InventoryObject : MonoBehaviour {
+public class InventoryScript : MonoBehaviour {
     public List<InventorySlot> container = new List<InventorySlot>();
+
+    void Start() {
+        // temp code to test
+        ItemObject item = ScriptableObject.CreateInstance("ItemObject") as ItemObject;
+        item.Init("test", "type");
+        AddItem(item);
+    }
+
     public void AddItem(ItemObject _item, int _amount=1) {
         for (int i = 0; i < container.Count; i++) {
             if (container[i].item == _item) {
