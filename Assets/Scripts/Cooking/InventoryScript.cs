@@ -19,26 +19,28 @@ public class InventoryScript : MonoBehaviour {
         AddItem(item);
     }
 
-    public void AddItem(ItemObject _item, int _amount=1) {
+    public bool AddItem(ItemObject _item, int _amount=1) {
         for (int i = 0; i < container.Count; i++) {
             if (container[i].item == _item) {
                 container[i].AddAmount(_amount);
-                return;
+                return true;
             }
         }
         container.Add(new InventorySlot(_item, _amount));
+        return true;
     }
 
-    public void RemoveItem(ItemObject _item, int _amount=1) {
+    public bool RemoveItem(ItemObject _item, int _amount=1) {
         for (int i = 0; i < container.Count; i++) {
             if (container[i].item == _item) {
                 container[i].AddAmount(_amount*-1);
                 if (container[i].amount <= 0) {
                     container.RemoveAt(i);
                 }
-                return;
+                return true;
             }
         }
+        return false;
     }
 
     private void Update()
