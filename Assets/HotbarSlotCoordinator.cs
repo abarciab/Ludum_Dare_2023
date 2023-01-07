@@ -11,7 +11,7 @@ public class HotbarSlotCoordinator : MonoBehaviour
     InventoryScript inv;
     ItemObject item;
     int count;
-    [SerializeField] Image itemImg;
+    [SerializeField] public Image itemImg;
     [SerializeField] TextMeshProUGUI itemCount;
 
     private void Start()

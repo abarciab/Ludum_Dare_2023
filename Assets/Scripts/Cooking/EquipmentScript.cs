@@ -1,44 +1,77 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class EquipmentScript : MonoBehaviour
 {
     // the number of slots which the player can enter stuff. negative is infinite
+    private int numItems = 0;
     public int maxSlots = 3;
-    public int currSlots = 0;
 
-    public InventoryScript playerInventory;
-    public GameObject UIBox;
+    public bool canInteract = false;
+
+    public List<ItemObject> currentItems = new List<ItemObject>();
+
+    [SerializeField] InventoryScript playerInventory;
+    // [SerializeField] Image itemImg;
+    [SerializeField] Transform UIBox;
+    [SerializeField] List<GameObject> UIContainer = new List<GameObject>();
+    [SerializeField] GameObject UISquare;
+
 
     // Start is called before the first frame update
     void Start()
     {
         playerInventory = GameObject.Find("player").GetComponent<InventoryScript>();
-        UIBox = GameObject.Find("UIBox");
     }
 
     // Update is called once per frame
     void Update()
     {
+        UpdateUI();
+        if (canInteract) {
+            // if player hits f while in collision, can interaact with the object
+            if (Input.GetKeyDown(KeyCode.F)) {
+                print("try to cook something");
+                TempTakeItems();
+            }
+        }
     }
 
-    /*void UpdateUI() {
-        Transform topLeft = UIBox.Find("TopLeft").transform;
-        Transform bottomRight = UIBox.Find("BotRight").transform;
-        float x_interval = BotRight.x - topLeft.x;
-
-        // dynamically create UI elements based on your mom
-        for(int i = 0; i < currSlots; i++) {
-
+    void UpdateUI() {
+        if (currentItems.Count == 0 || numItems == currentItems.Count) return;
+        numItems = currentItems.Count;
+        foreach(GameObject square in UIContainer) {
+            GameObject.Destroy(square);
         }
-    }*/
+        UIContainer.Clear();
+        UIBox.transform.position = transform.position;
+        Vector3 leftCoord = UIBox.GetChild(0).transform.position;
+        Vector3 rightCoord = UIBox.GetChild(1).transform.position;
+        float x_interval = (rightCoord.x - leftCoord.x)/(currentItems.Count+1);
+        // dynamically create UI elements based on your mom
+        for(int i = 1; i <= currentItems.Count; i++) {
+            GameObject square = Instantiate(
+                UISquare, new Vector3(leftCoord.x+(x_interval*i), UIBox.transform.position.y, 0), Quaternion.identity
+            );
+            print(square);
+            UIContainer.Add(square);
+            HotbarSlotCoordinator hotbar = square.GetComponent<HotbarSlotCoordinator>();
+            hotbar.itemImg.sprite = currentItems[i-1].itemSprite;
+            hotbar.itemImg.enabled = true;
+            //UIContainer[square].sprite = currentItems[i-1].itemSprite;
+            // UIContainer[square];
+        }
+    }
 
     void OnTriggerEnter2D(Collider2D other) {
-        // if player hits f while in collision, can interaact with the object
-        if (Input.GetKey(KeyCode.F)) {
-            print("try to cook something");
-        }
+        canInteract = true;
+    }
+
+    void OnTriggerExit2D(Collider2D other) {
+        canInteract = false;
     }
 
     /* 
@@ -58,8 +91,9 @@ public class EquipmentScript : MonoBehaviour
     // squares will be constantly added to the side of squares to drag to until mixSlots is reached
     // for now, if the player walks near it, it will automatically take two items from the player
     void TempTakeItems() {
-        playerInventory.RemoveItem(playerInventory.container[0].item);
-        currSlots+=1;
-        //Instantiate()
+        if (playerInventory.container.Count == 0) return;
+        ItemObject item = playerInventory.RemoveItem(playerInventory.selectedItem);
+        if (item)
+            currentItems.Add(item); 
     }
 }

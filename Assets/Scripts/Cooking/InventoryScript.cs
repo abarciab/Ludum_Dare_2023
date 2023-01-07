@@ -8,7 +8,6 @@ using UnityEngine.Analytics;
 // [CreateAssetMenu(fileName = "New Inventory", menuName = "Inventory System/Inventory")]
 public class InventoryScript : MonoBehaviour {
     public List<InventorySlot> container = new List<InventorySlot>();
-    
     //hotbar
     public static Action OnHotbarUpdate;
     public int hotbarIndex;
@@ -76,19 +75,20 @@ public class InventoryScript : MonoBehaviour {
         return freenum;
     }
 
-    public bool RemoveItem(ItemObject _item, int _amount=1) {
+    public ItemObject RemoveItem(ItemObject _item, int _amount=1) {
+        ItemObject item = null;
         for (int i = 0; i < container.Count; i++) {
             if (container[i].item == _item) {
                 container[i].AddAmount(_amount*-1);
                 if (container[i].amount <= 0) {
+                    item = container[i].item;
                     container.RemoveAt(i);
                 }
-                UpdateHotbar();
-                return true;
+                break;
             }
         }
         UpdateHotbar();
-        return false;
+        return item;
     }
 
     private void Update()
