@@ -67,6 +67,7 @@ public class Plot : MonoBehaviour
         }
         if (currentPlant.currentStage == Plant.GrowthStage.mature) {
             AudioManager.instance.PlayGlobal(1);
+            GameManager.instance.inventory.AddItem(currentPlant.plantItem);
             currentPlant = null;
             return;
         }

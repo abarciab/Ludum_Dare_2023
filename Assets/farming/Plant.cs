@@ -14,10 +14,11 @@ public class Plant : ScriptableObject
         public Sprite mature;
         public Sprite wilted;
     }
-    public enum Type { carrot, potato, tomato}
+    //public enum Type { carrot, potato, tomato}
     public enum GrowthStage { seed, sprout, mature, wilted}
 
-    [SerializeField] Type type;
+    //[SerializeField] Type type;
+    public ItemObject plantItem;
     public GrowthStage currentStage { get; private set; }
     [SerializeField] float stageTimeLength;
     bool growing = true;

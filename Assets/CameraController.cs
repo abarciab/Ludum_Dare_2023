@@ -7,7 +7,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] GameObject player;
     [SerializeField] float followSpeed = 0.05f;
     
-    void Update()
+    void LateUpdate()
     {
         FollowPlayer();
     }

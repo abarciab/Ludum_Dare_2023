@@ -5,6 +5,8 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
+
     [SerializeField] int frameTarget = 60;
 
     [Header("Text Display")]
@@ -13,6 +15,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject dialogueParent;
     bool displayingText;
     string currentLine;
+
+    //dependencies
+    public InventoryScript inventory;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
