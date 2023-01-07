@@ -1,0 +1,26 @@
+fileFormatVersion: 2
+guid: 0880ed8be539a6446b9099d2c0aca1be
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Jupiteroid
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 23da52856f3e1c34faec06f31e6b9b37, type: 3}
+  - {fileID: 12800000, guid: b0396baef4602af439273f10e28ac755, type: 3}
+  - {fileID: 12800000, guid: 046424ef8af674f499cf0380b3dd2c49, type: 3}
+  - {fileID: 12800000, guid: c2c10aa0f9b41894ba3e08c817f02e80, type: 3}
+  - {fileID: 12800000, guid: f4370e4c3a15e864683a2b793b453043, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
