@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1170d66558160d46998d7f735e2abf7, type: 3}
-  m_Name: Sugar
+  m_Name: Potato seeds
   m_EditorClassIdentifier: 
   hotbarIndex: -1
-  itemSprite: {fileID: 21300000, guid: 7c806eb876a96864d9a7ac806677cb96, type: 3}
-  itemName: Sugar
-  type: 
+  itemSprite: {fileID: 21300000, guid: c1d949957004445439d69c6639bbf291, type: 3}
+  itemName: Potato Seeds
+  foodValue: 
+  type: seed
   edible: 0
-  mealValue: 10
-  inrgedientCost: 25

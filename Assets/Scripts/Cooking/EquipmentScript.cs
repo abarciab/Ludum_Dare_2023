@@ -11,37 +11,47 @@ public class EquipmentScript : MonoBehaviour
     public int maxSlots = 3;
 
     public bool canInteract = false;
-
+    public bool used = false;
     public List<ItemObject> currentItems = new List<ItemObject>();
+    public List<ItemObject> cookingItems = new List<ItemObject>();
+    public List<ItemObject> possibleResults = new List<ItemObject>();
+    public List<string> validTypes = new List<string>();
 
-    [SerializeField] InventoryScript playerInventory;
+    private InventoryScript playerInventory;
+    public List<GameObject> UIContainer = new List<GameObject>();
     // [SerializeField] Image itemImg;
-    [SerializeField] Transform UIBox;
-    [SerializeField] List<GameObject> UIContainer = new List<GameObject>();
-    [SerializeField] GameObject UISquare;
+    private Transform UIBox;
+    private GameObject UISquare;
 
 
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
         playerInventory = GameObject.Find("player").GetComponent<InventoryScript>();
+        UIBox = transform.GetChild(0).transform;
+        UISquare = UIBox.GetChild(2).gameObject;
     }
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
         UpdateUI();
         if (canInteract) {
             // if player hits f while in collision, can interaact with the object
             if (Input.GetKeyDown(KeyCode.F)) {
-                print("try to cook something");
-                TempTakeItems();
+                AddItems();
+            }
+            if (Input.GetKeyDown(KeyCode.C)) {
+                Cook();
+            }
+            if (Input.GetKeyDown(KeyCode.G)) {
+                TakeItems();
             }
         }
     }
 
     void UpdateUI() {
-        if (currentItems.Count == 0 || numItems == currentItems.Count) return;
+        if (numItems == currentItems.Count) return;
         numItems = currentItems.Count;
         foreach(GameObject square in UIContainer) {
             GameObject.Destroy(square);
@@ -56,13 +66,10 @@ public class EquipmentScript : MonoBehaviour
             GameObject square = Instantiate(
                 UISquare, new Vector3(leftCoord.x+(x_interval*i), UIBox.transform.position.y, 0), Quaternion.identity
             );
-            print(square);
+            square.SetActive(true);
+            square.GetComponent<UISquareScript>().storedItem = currentItems[i-1];
+            square.GetComponent<Image>().sprite = currentItems[i-1].itemSprite;
             UIContainer.Add(square);
-            HotbarSlotCoordinator hotbar = square.GetComponent<HotbarSlotCoordinator>();
-            hotbar.itemImg.sprite = currentItems[i-1].itemSprite;
-            hotbar.itemImg.enabled = true;
-            //UIContainer[square].sprite = currentItems[i-1].itemSprite;
-            // UIContainer[square];
         }
     }
 
@@ -90,10 +97,29 @@ public class EquipmentScript : MonoBehaviour
 
     // squares will be constantly added to the side of squares to drag to until mixSlots is reached
     // for now, if the player walks near it, it will automatically take two items from the player
-    void TempTakeItems() {
-        if (playerInventory.container.Count == 0) return;
+    void AddItems() {
+        if (currentItems.Count >= maxSlots || used) return;
         ItemObject item = playerInventory.RemoveItem(playerInventory.selectedItem);
-        if (item)
+        if (item && validTypes.Contains(item.type.ToLower())) {
+            print($"add {item.itemName}");
             currentItems.Add(item); 
+        }
+        else {
+            print($"{item.itemName} is invalid");
+        }
+    }
+
+    void TakeItems() {
+        foreach(ItemObject item in currentItems) {
+            playerInventory.AddItem(item);
+        }
+        currentItems.Clear();
+        used = false;
+    }
+
+    public virtual void Cook() {
+        if (currentItems.Count == 0 || used) return;
+        used = true;
+        print("cook");
     }
 }

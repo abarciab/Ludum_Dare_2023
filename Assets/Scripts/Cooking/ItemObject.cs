@@ -8,6 +8,15 @@ public class ItemObject : ScriptableObject
     [HideInInspector]public int hotbarIndex = -1;
     public Sprite itemSprite;
     public string itemName;
+    /*
+    types:
+        vege
+        meat
+        ing
+        seed
+        item
+        dish
+    */
     public string type;
     [SerializeField] bool edible;
     [Tooltip("The amount of money gained from this item when fed to a hungry resident")]

@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1170d66558160d46998d7f735e2abf7, type: 3}
   m_Name: watering can
   m_EditorClassIdentifier: 
-  hotbarIndex: -1
+  hotbarIndex: 2
   itemSprite: {fileID: 21300000, guid: 6b27e7c3885cb134ba3b68996cafdf65, type: 3}
   itemName: Water Can
-  type: 
+  type: item
+  edible: 0
+  mealValue: 10
+  inrgedientCost: 0

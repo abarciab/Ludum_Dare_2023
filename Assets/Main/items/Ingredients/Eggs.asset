@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1170d66558160d46998d7f735e2abf7, type: 3}
-  m_Name: Milk
+  m_Name: Eggs
   m_EditorClassIdentifier: 
   hotbarIndex: -1
-  itemSprite: {fileID: 21300000, guid: c268e03bb34037546850d5ffaa63459c, type: 3}
-  itemName: Milk
-  type: 
+  itemSprite: {fileID: 21300000, guid: 74f7d875568084d4dad1a1450df65fb8, type: 3}
+  itemName: Eggs
+  type: ingr
   edible: 0
   mealValue: 10
-  inrgedientCost: 15
+  inrgedientCost: 10
