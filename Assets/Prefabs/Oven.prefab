@@ -1,0 +1,135 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2553686352899088686
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2026932480163923148, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026932480163923148, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8147609
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026932480163923148, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
+      propertyPath: m_Color.r
+      value: 0.71132076
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026932480163923149, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026932480163923149, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026932480163923149, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026932480163923149, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026932480163923149, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026932480163923149, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026932480163923149, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026932480163923149, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026932480163923149, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026932480163923149, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026932480163923149, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026932480163923151, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
+      propertyPath: maxSlots
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026932480163923151, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
+      propertyPath: maxDishes
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026932480163923151, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
+      propertyPath: burntTimer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026932480163923151, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
+      propertyPath: baseCookingTime
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026932480163923151, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
+      propertyPath: validTypes.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026932480163923151, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
+      propertyPath: validTypes.Array.data[0]
+      value: vege
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026932480163923151, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
+      propertyPath: validTypes.Array.data[1]
+      value: meat
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026932480163923151, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
+      propertyPath: validTypes.Array.data[2]
+      value: dish
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026932480163923151, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
+      propertyPath: validTypes.Array.data[3]
+      value: ingredient
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026932480163923151, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
+      propertyPath: validTypes.Array.data[4]
+      value: ingredient
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026932480163923151, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
+      propertyPath: possibleResults.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026932480163923151, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
+      propertyPath: possibleResults.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 53655c7e129904148800f1bbedc33091, type: 2}
+    - target: {fileID: 2026932480163923151, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
+      propertyPath: possibleResults.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 60c151bb23650024e9242c85926da7f9, type: 2}
+    - target: {fileID: 2026932480163923151, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
+      propertyPath: possibleResults.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: dc46583609911e046871e81281ace5d4, type: 2}
+    - target: {fileID: 2026932480163923151, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
+      propertyPath: possibleResults.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: fe244f6f5ae95fc4189d3e35be1338f9, type: 2}
+    - target: {fileID: 2026932480163923151, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
+      propertyPath: possibleResults.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 4d16013f99a90ef4fae6e1cfe05dddc3, type: 2}
+    - target: {fileID: 2026932480163923155, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
+      propertyPath: m_Name
+      value: Oven
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}

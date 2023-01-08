@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1170d66558160d46998d7f735e2abf7, type: 3}
-  m_Name: potato
+  m_Name: Burnt Food
   m_EditorClassIdentifier: 
   hotbarIndex: -1
   itemSprite: {fileID: 21300000, guid: 0f6f99febf4c6e741af03ae3ea36bc9d, type: 3}
-  itemName: Potato
-  type: vege
+  itemName: 
+  recipe: []
+  type: dish
   edible: 1
-  mealValue: 10
+  mealValue: -20
   inrgedientCost: 0

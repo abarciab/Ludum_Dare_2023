@@ -2,12 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public struct Ingredient {
+    [SerializeField]
+    public string ingredient;
+    [SerializeField]
+    public int quantity;
+    [SerializeField]
+    public bool overintake;
+}
+
 [CreateAssetMenu(fileName="Item", menuName="ScriptableObjects/ItemObject", order=1)]
 public class ItemObject : ScriptableObject
 {
     [HideInInspector]public int hotbarIndex = -1;
     public Sprite itemSprite;
     public string itemName;
+    [SerializeField]
+    public List<Ingredient> recipe = new List<Ingredient>();
     /*
     types:
         vege

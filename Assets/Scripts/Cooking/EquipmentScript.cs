@@ -9,19 +9,28 @@ public class EquipmentScript : MonoBehaviour
     // the number of slots which the player can enter stuff. negative is infinite
     private int numItems = 0;
     public int maxSlots = 3;
+    public int maxDishes = 3;
 
     public bool canInteract = false;
     public bool used = false;
     public List<ItemObject> currentItems = new List<ItemObject>();
     public List<ItemObject> cookingItems = new List<ItemObject>();
-    public List<ItemObject> possibleResults = new List<ItemObject>();
-    public List<string> validTypes = new List<string>();
+    public Dictionary<string, int> numTypes = new Dictionary<string, int>();
+    [SerializeField] public List<ItemObject> possibleResults = new List<ItemObject>();
+    [SerializeField] public List<string> validTypes = new List<string>();
 
     private InventoryScript playerInventory;
     public List<GameObject> UIContainer = new List<GameObject>();
     // [SerializeField] Image itemImg;
     private Transform UIBox;
     private GameObject UISquare;
+
+    public float cookingTimer = 0f;
+    public float baseCookingTime = 5f;
+    public float burntTimer = 10f;
+
+    private ItemObject burntFood;
+    private ItemObject strangeFood;
 
 
     // Start is called before the first frame update
@@ -30,12 +39,24 @@ public class EquipmentScript : MonoBehaviour
         playerInventory = GameObject.Find("player").GetComponent<InventoryScript>();
         UIBox = transform.GetChild(0).transform;
         UISquare = UIBox.GetChild(2).gameObject;
+        
+        // sort by mealValue
+        possibleResults.Sort(delegate(ItemObject a, ItemObject b) { return b.mealValue.CompareTo(a.mealValue); });
+        foreach(ItemObject dish in possibleResults) {
+            if (dish.itemName.ToLower() == "burnt food") {
+                burntFood = dish;
+            }
+            else if (dish.itemName.ToLower() == "strange food") {
+                strangeFood = dish;
+            }
+        }
     }
 
     // Update is called once per frame
     protected void Update()
     {
         UpdateUI();
+        UpdateCooking();
         if (canInteract) {
             // if player hits f while in collision, can interaact with the object
             if (Input.GetKeyDown(KeyCode.F)) {
@@ -46,6 +67,24 @@ public class EquipmentScript : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.G)) {
                 TakeItems();
+            }
+        }
+    }
+
+    void UpdateCooking() {
+        if (!used) return;
+        cookingTimer -= Time.deltaTime;
+        if (cookingTimer <= 0 && currentItems.Count == 0) {
+            foreach (ItemObject item in cookingItems) {
+                currentItems.Add(item);
+            }
+            cookingItems.Clear();
+            cookingTimer = burntTimer;
+        }
+        else if (cookingTimer <= -1*burntTimer && currentItems.Count != 0) {
+            foreach (ItemObject item in currentItems) {
+                currentItems.Remove(item);
+                currentItems.Add(burntFood);
             }
         }
     }
@@ -99,27 +138,133 @@ public class EquipmentScript : MonoBehaviour
     // for now, if the player walks near it, it will automatically take two items from the player
     void AddItems() {
         if (currentItems.Count >= maxSlots || used) return;
-        ItemObject item = playerInventory.RemoveItem(playerInventory.selectedItem);
+        ItemObject item = playerInventory.selectedItem;
         if (item && validTypes.Contains(item.type.ToLower())) {
             print($"add {item.itemName}");
+            playerInventory.RemoveItem(playerInventory.selectedItem);
             currentItems.Add(item); 
         }
-        else {
+        else if (item) {
             print($"{item.itemName} is invalid");
         }
     }
 
     void TakeItems() {
         foreach(ItemObject item in currentItems) {
+            print($"Took {item.itemName}");
             playerInventory.AddItem(item);
         }
         currentItems.Clear();
         used = false;
     }
 
-    public virtual void Cook() {
+    /*
+    look through the recipe for the possible results, then take the right items
+    edge cases:
+        curr_items = [potato, potato, potato, potato]
+        recipe = [1 vege, 2 potato]
+        usedItems = []
+        
+
+        potato is vege but is also in recipe
+
+        potato: is in & not in dict, so usedItems = [potato: 1]
+        potato: is in, in dict but 1 < 2, so usedItems = [potato: 2]
+        potato: is in, in dict but 2 !< 2
+            check type: is vege, so usedItems = [potato: 2, vege: 1]
+        potato: is in, in dict but 2 !< 2
+            check type: is vege, but 1 !< 1, so is invalid.
+
+        for the final check, compare sizes of recipe 
+    */
+    public void Cook() {
         if (currentItems.Count == 0 || used) return;
+        Dictionary<string, int> usedIng = new Dictionary<string, int>();
+        List<ItemObject> usedItems = new List<ItemObject>();
+
+        foreach (ItemObject dish in possibleResults) {
+            // if max dishes reached, break
+            if (cookingItems.Count >= maxDishes) break;
+
+            int recipeSize = 0;
+            bool overintake = false;
+            foreach (Ingredient ingr in dish.recipe) {
+                recipeSize += ingr.quantity;
+                if (ingr.overintake) overintake = true;
+            }
+            // if their's only one slot left, only check recipies of the same size as the items OR overload recipes
+            if (
+                recipeSize == 0 || recipeSize >= currentItems.Count 
+                || (cookingItems.Count >= maxDishes-1 && (recipeSize != currentItems.Count && !overintake))
+            ) {
+                continue;
+            }
+            // if one of the ingr is not fulfilled, then cook is false
+            foreach (ItemObject item in currentItems) {
+                bool validItem = false;
+                string itemName = item.itemName.ToLower();
+                // check if the ingredient is in the queue
+                // this checks for all the name coinciding first
+                foreach (Ingredient ingr in dish.recipe) {
+                    bool validName = (
+                        itemName==ingr.ingredient.ToLower()
+                        && (!usedIng.ContainsKey(itemName) || (usedIng.ContainsKey(itemName) && (usedIng[itemName] < ingr.quantity || ingr.overintake)))
+                    );
+                    if (validName) {
+                        if (!usedIng.ContainsKey(itemName)) usedIng[itemName] = 0;
+                        usedIng[itemName]++;
+                        usedItems.Add(item);
+                        validItem = true;
+                        break;
+                    }
+                }
+                // if not a valid item, check if it's a valid type
+                if (!validItem) {
+                    string itemType = item.type.ToLower();
+                    foreach (Ingredient ingr in dish.recipe) {
+                        bool validType = (
+                            itemType==ingr.ingredient.ToLower()
+                            && (!usedIng.ContainsKey(itemType) || (usedIng.ContainsKey(itemType) && (usedIng[itemType] < ingr.quantity || ingr.overintake)))
+                        );
+                        if (validType) {
+                            if (!usedIng.ContainsKey(itemType)) usedIng[itemType] = 0;
+                            usedIng[itemType]++;
+                            usedItems.Add(item);
+                            validItem = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            print("used items:");
+            foreach (ItemObject i in usedItems) print(i);
+            // if it overintakes & it used less than the current items & is last slot, do not make
+            bool cook = (
+                usedItems.Count >= recipeSize
+                && !(overintake && cookingItems.Count >= maxDishes-1 && usedItems.Count < currentItems.Count)
+            );
+            // bool failOverload = (usedItems.Count < recipeSize) || (overintake && cookingItems.Count >= maxDishes-1 && usedItems.Count < currentItems.Count)
+            
+            if (cook) {
+                print($"make {dish.itemName}");
+                foreach(ItemObject item in usedItems) {
+                    currentItems.Remove(item);
+                }
+                cookingItems.Add(dish);
+            }
+            else {
+                print($"couldn't make {dish.itemName}");    
+            }
+            usedItems.Clear();
+            usedIng.Clear();
+        }
+        if (currentItems.Count != 0 && cookingItems.Count < maxDishes) {
+            print("strange food made");
+            cookingItems.Add(strangeFood);
+        }
+
+        cookingTimer = cookingItems.Count * baseCookingTime;
         used = true;
-        print("cook");
+        currentItems.Clear();
     }
 }
