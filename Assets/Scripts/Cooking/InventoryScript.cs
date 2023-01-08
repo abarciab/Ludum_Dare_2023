@@ -1,9 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Analytics;
+using TMPro;
 
 
 // [CreateAssetMenu(fileName = "New Inventory", menuName = "Inventory System/Inventory")]
@@ -13,6 +12,9 @@ public class InventoryScript : MonoBehaviour {
     public static Action OnHotbarUpdate;
     public int hotbarIndex;
     public ItemObject selectedItem;
+    //UI
+    [SerializeField] TextMeshProUGUI moneyDisplay;
+    public int money;
 
     private void Awake()
     {
@@ -39,7 +41,6 @@ public class InventoryScript : MonoBehaviour {
                 }
             }
         }
-        
     }
 
 
@@ -156,6 +157,7 @@ public class InventoryScript : MonoBehaviour {
     {
         selectHotbarItem();
         UpdateHotbar();
+        moneyDisplay.text = "$ " + money;
     }
 
     void selectHotbarItem()

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class Resident : MonoBehaviour
@@ -21,6 +22,12 @@ public class Resident : MonoBehaviour
     [SerializeField] List<DialogueTriggers> conversations;
     [SerializeField] List<Conversation> randomConversations;    //these are displayed (in order) when this resident is given a meal that they don't have a trigger for
     [SerializeField] Conversation defaultConvo;
+    public bool hungry = true;
+
+    private void Start()
+    {
+        GameManager.instance.residents.Add(this);
+    }
 
     private void OnValidate()
     {
@@ -39,7 +46,7 @@ public class Resident : MonoBehaviour
     void StartConvo(ItemObject _item)
     {
         if (_item == null) return;
-        print("starting convo: " + _item.name);
+        if (_item.IsEdible()) Eat(_item);
 
         for (int i = 0; i < conversations.Count; i++) {
             if (conversations[i].trigger == _item) {
@@ -60,5 +67,11 @@ public class Resident : MonoBehaviour
         else {
             GameManager.instance.StartConvo(defaultConvo.dialogue);
         }
+    }
+
+    void Eat(ItemObject meal)
+    {
+        hungry = false;
+        GameManager.instance.GainMoney(meal.mealValue);
     }
 }

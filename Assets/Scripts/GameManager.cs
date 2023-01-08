@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
-using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -22,6 +22,16 @@ public class GameManager : MonoBehaviour
     int convoIndex;
     List<string> lines;
 
+    [Header("Daily Cycle")]
+    [SerializeField] GameObject nightSky;
+    [HideInInspector] public List<Resident> residents = new List<Resident>();
+    
+    bool readyToAdvanceDay;
+    [Header("UI")]
+    [SerializeField] TextMeshProUGUI hungryResidentsDisplay;
+    [SerializeField] TextMeshProUGUI gainMoney;
+    [SerializeField] TextMeshProUGUI loseMoney;
+
     //dependencies
     public InventoryScript inventory;
     public GameObject player, invParent;
@@ -35,6 +45,15 @@ public class GameManager : MonoBehaviour
     {
         SetFrameRate();
         EndConversation();
+    }
+
+    public int NumHungryResidents()
+    {
+        int num = 0;
+        for (int i = 0; i < residents.Count; i++) {
+            if (residents[i].hungry) num ++;
+        }
+        return num;
     }
 
     void SetFrameRate()
@@ -81,29 +100,82 @@ public class GameManager : MonoBehaviour
         lines = new List<string>();
         completeLine();
         dialogueParent.gameObject.SetActive(false);
+        if (readyToAdvanceDay) AdvanceDay();
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.E)) invParent.SetActive(!invParent.activeInHierarchy);
+        if (Input.GetKeyDown(KeyCode.R)) RestartScene();
 
-        if (Input.GetKeyDown(KeyCode.R)) {
-            SceneManager.LoadScene(0);
-            SceneManager.LoadScene(1, LoadSceneMode.Additive);
-            SceneManager.LoadScene(2, LoadSceneMode.Additive);
-            SceneManager.LoadScene(3, LoadSceneMode.Additive);
+        ProcessDialogue();
+        UpdateHungryDisplay();
+        ProcesResidentHunger();
+    }
 
-            /*for (int i = 0; i < SceneManager.sceneCount; i++) {
-                SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(i).name);
-                SceneManager.LoadScene(SceneManager.GetSceneAt(i).name, LoadSceneMode.Additive);
-            }*/
+    void ProcesResidentHunger()
+    {
+        if (NumHungryResidents() == 0 && !nightSky.activeInHierarchy) {
+            if (lines.Count > 0)
+                readyToAdvanceDay = true;
+            else AdvanceDay();
         }
+        if (residents.Count == 0) EndGame();
+    }
 
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Fire1")) && !displayingText && lines.Count > 0){
+    public void GainMoney(int amount)
+    {
+        AudioManager.instance.PlayGlobal(3);
+        inventory.money += amount;
+        gainMoney.text = "+ " + amount;
+        gainMoney.gameObject.SetActive(true);
+    }
+
+    public void LoseMoney(int amount)
+    {
+        inventory.money -= Mathf.Abs(amount);
+        loseMoney.text = "- " + amount;
+        loseMoney.gameObject.SetActive(true);
+    }
+
+    void UpdateHungryDisplay()
+    {
+        if (nightSky.activeInHierarchy) {
+            hungryResidentsDisplay.text = "Residents to Feed: 0";
+            return;
+        }
+        hungryResidentsDisplay.text = "Residents to Feed: " + NumHungryResidents();
+    }
+
+    void EndGame()
+    {
+        print("YOU WIN!");
+    }
+
+    void AdvanceDay()
+    {
+        readyToAdvanceDay = false;
+        nightSky.SetActive(true);
+        for (int i = 0; i < residents.Count; i++) {
+            residents[i].hungry = true;
+        }
+    }
+
+    void ProcessDialogue()
+    {
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Fire1")) && !displayingText && lines.Count > 0) {
             NextLine();
         }
         else if (Input.GetKeyDown(KeyCode.Space))
             completeLine();
+    }
+
+    void RestartScene()
+    {
+        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1, LoadSceneMode.Additive);
+        SceneManager.LoadScene(2, LoadSceneMode.Additive);
+        SceneManager.LoadScene(3, LoadSceneMode.Additive);
     }
 
     IEnumerator DisplayLine(string line)
