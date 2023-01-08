@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI gainMoney;
     [SerializeField] TextMeshProUGUI loseMoney;
 
+    [HideInInspector] public Van vanScript;
+
     //dependencies
     public InventoryScript inventory;
     public GameObject player, invParent;
@@ -43,7 +45,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        SetFrameRate();
         EndConversation();
     }
 
@@ -54,11 +55,6 @@ public class GameManager : MonoBehaviour
             if (residents[i].hungry) num ++;
         }
         return num;
-    }
-
-    void SetFrameRate()
-    {
-        //Application.targetFrameRate = frameTarget;
     }
 
     public void StartConvo(List<string> _lines)
@@ -90,7 +86,7 @@ public class GameManager : MonoBehaviour
 
     public void DeliverItem(ItemObject item)
     {
-
+        if (vanScript != null) vanScript.DropOffItem(item);
     }
     public void completeLine()
     {
