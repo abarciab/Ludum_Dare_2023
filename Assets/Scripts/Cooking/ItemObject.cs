@@ -12,6 +12,7 @@ public class ItemObject : ScriptableObject
     [SerializeField] bool edible;
     [Tooltip("The amount of money gained from this item when fed to a hungry resident")]
     public int mealValue = 10;
+    public int inrgedientCost;
     public void Init(string _itemName, string _type) {
         itemName = _itemName;
         type = _type;

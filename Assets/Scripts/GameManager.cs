@@ -88,6 +88,10 @@ public class GameManager : MonoBehaviour
         StartCoroutine(DisplayLine(line));
     }
 
+    public void DeliverItem(ItemObject item)
+    {
+
+    }
     public void completeLine()
     {
         if (displayingText) StopAllCoroutines();
