@@ -37,11 +37,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2026932480163923149, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.36
       objectReference: {fileID: 0}
     - target: {fileID: 2026932480163923149, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 5.48
       objectReference: {fileID: 0}
     - target: {fileID: 2026932480163923149, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -95,6 +95,10 @@ PrefabInstance:
       propertyPath: burntTimer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 2026932480163923151, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
+      propertyPath: usedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1f63245c8a8a375498bc0842e63b8add, type: 3}
     - target: {fileID: 2026932480163923151, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
       propertyPath: baseCookingTime
       value: 6

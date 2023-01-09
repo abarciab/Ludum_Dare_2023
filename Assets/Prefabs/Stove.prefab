@@ -37,11 +37,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2026932480163923149, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -8.93
       objectReference: {fileID: 0}
     - target: {fileID: 2026932480163923149, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 5.3900003
       objectReference: {fileID: 0}
     - target: {fileID: 2026932480163923149, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -96,6 +96,10 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2026932480163923151, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
+      propertyPath: usedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 195f7e3a1efeda944977d0b8dddd82a3, type: 3}
+    - target: {fileID: 2026932480163923151, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
       propertyPath: baseCookingTime
       value: 7
       objectReference: {fileID: 0}
@@ -121,7 +125,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2026932480163923151, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
       propertyPath: possibleResults.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2026932480163923151, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
       propertyPath: possibleResults.Array.data[0]
@@ -139,6 +143,10 @@ PrefabInstance:
       propertyPath: possibleResults.Array.data[3]
       value: 
       objectReference: {fileID: 11400000, guid: dc46583609911e046871e81281ace5d4, type: 2}
+    - target: {fileID: 2026932480163923151, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
+      propertyPath: possibleResults.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 94ab49ba9df914a4aa2ac8df2febc0f8, type: 2}
     - target: {fileID: 2026932480163923155, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
       propertyPath: m_Name
       value: Stove

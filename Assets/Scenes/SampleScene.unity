@@ -8856,6 +8856,60 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     looping: 0
+  - name: start fire
+    ID: 8
+    clip: {fileID: 8300000, guid: faa260316442f4945ae1de96091478ab, type: 3}
+    volume: 1
+    pitch: 1
+    looping: 0
+  - name: burning
+    ID: 9
+    clip: {fileID: 8300000, guid: f7977a652509dcf4a934e39628ab04c6, type: 3}
+    volume: 1
+    pitch: 1
+    looping: 0
+  - name: food done
+    ID: 10
+    clip: {fileID: 8300000, guid: 6fcceea22b64c9143bcd56a056e8a6ae, type: 3}
+    volume: 1
+    pitch: 1
+    looping: 0
+  - name: frying
+    ID: 11
+    clip: {fileID: 8300000, guid: 3db116b25f1da9f45b5e087da82fec3e, type: 3}
+    volume: 1
+    pitch: 1
+    looping: 1
+  - name: chopping
+    ID: 12
+    clip: {fileID: 8300000, guid: e02e1fc1b0558174384fd363e3e1a718, type: 3}
+    volume: 1
+    pitch: 1
+    looping: 1
+  - name: poor result
+    ID: 13
+    clip: {fileID: 8300000, guid: 62346aea636b53e4c84912d12770edb5, type: 3}
+    volume: 1
+    pitch: 1
+    looping: 0
+  - name: good result
+    ID: 14
+    clip: {fileID: 8300000, guid: c603b60631ebace44927c5df40065434, type: 3}
+    volume: 1
+    pitch: 1
+    looping: 0
+  - name: great result
+    ID: 15
+    clip: {fileID: 8300000, guid: 3a380af2a0fa91b458d1051aec79d5c6, type: 3}
+    volume: 1
+    pitch: 1
+    looping: 0
+  - name: blip
+    ID: 16
+    clip: {fileID: 8300000, guid: 2d39f11e6dbe7e74f8738c80f37e9169, type: 3}
+    volume: 1
+    pitch: 1
+    looping: 0
   music: {fileID: 519420033}
   global: {fileID: 2135021304}
 --- !u!1001 &473675285790988519

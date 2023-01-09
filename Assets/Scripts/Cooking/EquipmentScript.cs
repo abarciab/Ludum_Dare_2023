@@ -11,9 +11,21 @@ public class EquipmentScript : MonoBehaviour
     public int maxSlots = 3;
     public int maxDishes = 3;
 
+    public bool bought = false;
+    public int price = 10;
+
     public bool canInteract = false;
     public bool used = false;
     public bool burnt = false;
+    public bool usesFire = true;
+
+    // dish result
+    private string result = "";
+
+    [SerializeField] public ParticleSystem smokeEmitter;
+    protected Sprite defaultSprite;
+    [SerializeField] protected Sprite usedSprite;
+    protected SpriteRenderer equipRenderer;
     public List<ItemObject> currentItems = new List<ItemObject>();
     public List<ItemObject> cookingItems = new List<ItemObject>();
     public Dictionary<string, int> numTypes = new Dictionary<string, int>();
@@ -26,12 +38,21 @@ public class EquipmentScript : MonoBehaviour
     private Transform UIBox;
     private GameObject UISquare;
 
+    [SerializeField] public TextMeshProUGUI priceText;
+
     public float cookingTimer = 0f;
     public float baseCookingTime = 5f;
     public float burntTimer = 10f;
 
     private ItemObject burntFood;
     private ItemObject strangeFood;
+
+    private AudioSource source;
+    private AudioSource smokeSource;
+
+    public int GreatMealValue = 50;
+
+    private float blipFrequencyRate = 0.2f;
 
 
     // Start is called before the first frame update
@@ -40,6 +61,9 @@ public class EquipmentScript : MonoBehaviour
         playerInventory = GameObject.Find("player").GetComponent<InventoryScript>();
         UIBox = transform.GetChild(0).transform;
         UISquare = UIBox.GetChild(2).gameObject;
+        equipRenderer = GetComponent<SpriteRenderer>();
+        source = GetComponent<AudioSource>();
+        defaultSprite = equipRenderer.sprite;
         
         // sort by mealValue
         possibleResults.Sort(delegate(ItemObject a, ItemObject b) { return b.mealValue.CompareTo(a.mealValue); });
@@ -51,6 +75,9 @@ public class EquipmentScript : MonoBehaviour
                 strangeFood = dish;
             }
         }
+        if (smokeEmitter) {
+            smokeSource = transform.Find("Smoke Emitter").gameObject.GetComponent<AudioSource>();
+        }
     }
 
     // Update is called once per frame
@@ -58,11 +85,24 @@ public class EquipmentScript : MonoBehaviour
     {
         UpdateUI();
         UpdateCooking();
+        UpdateSmoke();
+        UpdateSprite();
+        priceText.enabled = false;
         if (canInteract) {
-            // if player hits f while in collision, can interaact with the object
+            if (!bought) {
+                print("show price text");
+                priceText.enabled = true;
+                priceText.text = $"${price}";
+                if (Input.GetKeyDown(KeyCode.F) && playerInventory.money >= price) {
+                    bought = true;
+                    playerInventory.money -= price;
+                }
+                return;
+            }
             if (Input.GetKeyDown(KeyCode.F)) {
                 AddItems();
             }
+            if (!bought) return;
             if (Input.GetKeyDown(KeyCode.C)) {
                 Cook();
             }
@@ -74,16 +114,19 @@ public class EquipmentScript : MonoBehaviour
 
     void UpdateCooking() {
         if (!used) return;
+
         cookingTimer -= Time.deltaTime;
         if (cookingTimer <= 0 && currentItems.Count == 0) {
+            AudioManager.instance.PlayHere(10, source); 
             foreach (ItemObject item in cookingItems) {
                 currentItems.Add(item);
             }
             cookingItems.Clear();
             cookingTimer = burntTimer;
         }
-        else if (!burnt && burntTimer > 0 && cookingTimer <= -1*burntTimer && currentItems.Count != 0) {
+        else if (!burnt && usesFire && cookingTimer <= -1*burntTimer && currentItems.Count != 0) {
             print("food got burnt!");
+            AudioManager.instance.PlayHere(9, source);
             burnt = true;
             for (int i = 0; i < currentItems.Count; i++) {
                 currentItems.Remove(currentItems[i]);
@@ -112,6 +155,33 @@ public class EquipmentScript : MonoBehaviour
             square.GetComponent<UISquareScript>().storedItem = currentItems[i-1];
             square.GetComponent<Image>().sprite = currentItems[i-1].itemSprite;
             UIContainer.Add(square);
+        }
+    }
+
+    protected void UpdateSprite() {
+        if (!bought) {
+            equipRenderer.color = Color.grey;
+        }
+        else {
+            equipRenderer.color = Color.white;
+        }
+        if (used && usedSprite) {
+            equipRenderer.sprite = usedSprite;
+        }
+        else if (!used) {
+            equipRenderer.sprite = defaultSprite;
+        }
+    }
+
+    void UpdateSmoke() {
+        if (used && usesFire && !smokeEmitter.isPlaying) {
+            smokeEmitter.Play();
+        }
+        else if (!used && smokeEmitter.isPlaying){
+            smokeEmitter.Stop();
+            if (smokeSource.isPlaying) {
+                smokeSource.Stop();
+            }
         }
     }
 
@@ -145,7 +215,11 @@ public class EquipmentScript : MonoBehaviour
         if (item && validTypes.Contains(item.type.ToLower())) {
             print($"add {item.itemName}");
             playerInventory.RemoveItem(playerInventory.selectedItem);
-            currentItems.Add(item); 
+            float freq = 1 + currentItems.Count * blipFrequencyRate;
+            print(freq);
+            AudioManager.instance.PlayHere(16, source);  
+            source.pitch = freq;
+            currentItems.Add(item);
         }
         else if (item) {
             print($"{item.itemName} is invalid");
@@ -153,6 +227,8 @@ public class EquipmentScript : MonoBehaviour
     }
 
     void TakeItems() {
+        if (used)
+            CheckDishQuality();
         foreach(ItemObject item in currentItems) {
             print($"Took {item.itemName}");
             playerInventory.AddItem(item);
@@ -183,6 +259,7 @@ public class EquipmentScript : MonoBehaviour
     */
     public void Cook() {
         if (currentItems.Count == 0 || used) return;
+        source.pitch = 1;
         Dictionary<string, int> usedIng = new Dictionary<string, int>();
         List<ItemObject> usedItems = new List<ItemObject>();
 
@@ -269,9 +346,30 @@ public class EquipmentScript : MonoBehaviour
             print("strange food made");
             cookingItems.Add(strangeFood);
         }
+        if (usesFire) {
+            AudioManager.instance.PlayHere(8, source);
+            AudioManager.instance.PlayHere(11, smokeSource);
+        }
+        else {
+            AudioManager.instance.PlayHere(12, source);
+        }
 
         cookingTimer = cookingItems.Count * baseCookingTime;
         used = true;
         currentItems.Clear();
+    }
+
+    void CheckDishQuality() {
+        int highestVal = 0;
+        int playId = 13;
+        foreach (ItemObject dish in currentItems) {
+            if (dish.mealValue > highestVal)
+                highestVal = dish.mealValue;
+        }
+
+        if (highestVal <= 0) playId = 13;
+        else if (highestVal < GreatMealValue) playId = 14;
+        else playId = 15;
+        AudioManager.instance.PlayHere(playId, source);
     }
 }
