@@ -14,6 +14,11 @@ public class EquipmentScript : MonoBehaviour
     public bool canInteract = false;
     public bool used = false;
     public bool burnt = false;
+    public bool usesFire = true;
+    [SerializeField] public ParticleSystem smokeEmitter;
+    protected Sprite defaultSprite;
+    [SerializeField] protected Sprite usedSprite;
+    protected SpriteRenderer equipRenderer;
     public List<ItemObject> currentItems = new List<ItemObject>();
     public List<ItemObject> cookingItems = new List<ItemObject>();
     public Dictionary<string, int> numTypes = new Dictionary<string, int>();
@@ -40,6 +45,8 @@ public class EquipmentScript : MonoBehaviour
         playerInventory = GameObject.Find("player").GetComponent<InventoryScript>();
         UIBox = transform.GetChild(0).transform;
         UISquare = UIBox.GetChild(2).gameObject;
+        equipRenderer = GetComponent<SpriteRenderer>();
+        defaultSprite = equipRenderer.sprite;
         
         // sort by mealValue
         possibleResults.Sort(delegate(ItemObject a, ItemObject b) { return b.mealValue.CompareTo(a.mealValue); });
@@ -58,6 +65,8 @@ public class EquipmentScript : MonoBehaviour
     {
         UpdateUI();
         UpdateCooking();
+        UpdateSmoke();
+        UpdateSprite();
         if (canInteract) {
             // if player hits f while in collision, can interaact with the object
             if (Input.GetKeyDown(KeyCode.F)) {
@@ -74,6 +83,7 @@ public class EquipmentScript : MonoBehaviour
 
     void UpdateCooking() {
         if (!used) return;
+
         cookingTimer -= Time.deltaTime;
         if (cookingTimer <= 0 && currentItems.Count == 0) {
             foreach (ItemObject item in cookingItems) {
@@ -82,7 +92,7 @@ public class EquipmentScript : MonoBehaviour
             cookingItems.Clear();
             cookingTimer = burntTimer;
         }
-        else if (!burnt && burntTimer > 0 && cookingTimer <= -1*burntTimer && currentItems.Count != 0) {
+        else if (!burnt && usesFire && cookingTimer <= -1*burntTimer && currentItems.Count != 0) {
             print("food got burnt!");
             burnt = true;
             for (int i = 0; i < currentItems.Count; i++) {
@@ -112,6 +122,24 @@ public class EquipmentScript : MonoBehaviour
             square.GetComponent<UISquareScript>().storedItem = currentItems[i-1];
             square.GetComponent<Image>().sprite = currentItems[i-1].itemSprite;
             UIContainer.Add(square);
+        }
+    }
+
+    protected void UpdateSprite() {
+        if (used && usedSprite) {
+            equipRenderer.sprite = usedSprite;
+        }
+        else if (!used) {
+            equipRenderer.sprite = defaultSprite;
+        }
+    }
+
+    void UpdateSmoke() {
+        if (used && usesFire && !smokeEmitter.isPlaying) {
+            smokeEmitter.Play();
+        }
+        else if (!used && smokeEmitter.isPlaying){
+            smokeEmitter.Stop();
         }
     }
 

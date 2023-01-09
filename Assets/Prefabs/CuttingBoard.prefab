@@ -17,11 +17,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2026932480163923149, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -5.994589
       objectReference: {fileID: 0}
     - target: {fileID: 2026932480163923149, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 5.3548145
       objectReference: {fileID: 0}
     - target: {fileID: 2026932480163923149, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -62,6 +62,10 @@ PrefabInstance:
     - target: {fileID: 2026932480163923150, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 1.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026932480163923151, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
+      propertyPath: usesFire
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2026932480163923151, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
       propertyPath: burntTimer
@@ -105,7 +109,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: cb9b2a13ef56bab45b5459e7860e8ca8, type: 2}
     - target: {fileID: 2026932480163923155, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
       propertyPath: m_Name
-      value: Cuttingboard 1
+      value: CuttingBoard
       objectReference: {fileID: 0}
     - target: {fileID: 7094690731460944664, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
