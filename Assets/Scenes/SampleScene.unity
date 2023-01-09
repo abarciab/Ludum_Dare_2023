@@ -3499,7 +3499,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &885410860
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7650,9 +7650,6 @@ MonoBehaviour:
   - invSlotIndex: 0
     item: {fileID: 11400000, guid: 6c496a8ca4154044396304e123ee34d8, type: 2}
     amount: 1
-  - invSlotIndex: 0
-    item: {fileID: 11400000, guid: 3ffff7d90025b2749840d599f9c4bd5b, type: 2}
-    amount: 1
   hotbarIndex: 0
   selectedItem: {fileID: 0}
   moneyDisplay: {fileID: 1638166938}
@@ -9476,7 +9473,7 @@ MonoBehaviour:
     looping: 0
   - name: music
     ID: 6
-    clip: {fileID: 8300000, guid: a916610d45f3b6a47815fbbdb306a5e7, type: 3}
+    clip: {fileID: 8300000, guid: 44137271d33212a458536ffa8be68a0d, type: 3}
     volume: 0.184
     pitch: 1
     looping: 1

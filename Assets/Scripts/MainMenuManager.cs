@@ -5,21 +5,33 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
+    [SerializeField] AudioSource buttonAudioSource;
+    [SerializeField] AudioClip hoverSound;
+    [SerializeField] AudioClip clickSound;
+
     public void StartGame()
     {
-        SceneManager.LoadScene(0, LoadSceneMode.Additive);
+        SceneManager.LoadScene(0);
         SceneManager.LoadScene(1, LoadSceneMode.Additive);
         SceneManager.LoadScene(2, LoadSceneMode.Additive);
-        SceneManager.UnloadSceneAsync(3);
+        SceneManager.LoadScene(3, LoadSceneMode.Additive);
+        SceneManager.UnloadSceneAsync(4);
     }
 
     public void ViewCredits()
     {
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene(5);
     }
 
-    public void ViewSettings()
+
+    public void PlayHoverSound()
     {
-        print("settigns???");
+        buttonAudioSource.clip = hoverSound;
+        buttonAudioSource.Play();
+    }
+    public void PlayClickSound()
+    {
+        buttonAudioSource.clip = clickSound;
+        buttonAudioSource.Play();
     }
 }
