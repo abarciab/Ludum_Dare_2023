@@ -4,6 +4,7 @@ using UnityEngine;
 //using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -25,6 +26,9 @@ public class GameManager : MonoBehaviour
     [Header("Daily Cycle")]
     [SerializeField] GameObject nightSky;
     [HideInInspector] public List<Resident> residents = new List<Resident>();
+    public static Action DiningEvent;
+    [SerializeField] float diningInterval;
+    float diningCountdown;
     
     bool readyToAdvanceDay;
     [Header("UI")]
@@ -45,6 +49,9 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        AudioManager.instance.PlayMusic(6);
+        diningCountdown = diningInterval;
+        DiningEvent = null;
         EndConversation();
     }
 
@@ -111,6 +118,9 @@ public class GameManager : MonoBehaviour
         ProcessDialogue();
         UpdateHungryDisplay();
         ProcesResidentHunger();
+
+        diningCountdown -= Time.deltaTime;
+        if (diningCountdown <= 0 & DiningEvent != null) DiningEvent.Invoke();
     }
 
     void ProcesResidentHunger()
@@ -154,11 +164,13 @@ public class GameManager : MonoBehaviour
 
     void AdvanceDay()
     {
+        AudioManager.instance.PlayGlobal(7);
         readyToAdvanceDay = false;
         nightSky.SetActive(true);
         for (int i = 0; i < residents.Count; i++) {
             residents[i].hungry = true;
         }
+        diningCountdown = diningInterval;
     }
 
     void ProcessDialogue()

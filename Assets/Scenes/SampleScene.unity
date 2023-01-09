@@ -3641,6 +3641,7 @@ MonoBehaviour:
   wateringTime: 0.75
   nightSky: {fileID: 700818170}
   residents: []
+  diningInterval: 120
   hungryResidentsDisplay: {fileID: 1102637231}
   gainMoney: {fileID: 1291573077}
   loseMoney: {fileID: 903723580}
@@ -6134,7 +6135,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1792673571}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -16.49, y: -13.49, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7530,12 +7531,30 @@ MonoBehaviour:
   - name: Cash
     ID: 3
     clip: {fileID: 8300000, guid: c558fc35a9631094c8d168ac4a189f86, type: 3}
-    volume: 1
+    volume: 0.205
     pitch: 1
     looping: 0
   - name: Deliver box sound
     ID: 4
     clip: {fileID: 8300000, guid: 096ebdcbca6957d4f98d415f8305eaab, type: 3}
+    volume: 1
+    pitch: 1
+    looping: 0
+  - name: 'Open Door '
+    ID: 5
+    clip: {fileID: 8300000, guid: 0fbeba55afad490458f5c44a578568f6, type: 3}
+    volume: 0.03
+    pitch: 0.41
+    looping: 0
+  - name: music
+    ID: 6
+    clip: {fileID: 8300000, guid: a916610d45f3b6a47815fbbdb306a5e7, type: 3}
+    volume: 0.394
+    pitch: 1
+    looping: 1
+  - name: night jingle
+    ID: 7
+    clip: {fileID: 8300000, guid: 5124aa99f582eac4db9bfbff8b946b89, type: 3}
     volume: 1
     pitch: 1
     looping: 0
