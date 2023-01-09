@@ -15,7 +15,8 @@ MonoBehaviour:
   hotbarIndex: -1
   itemSprite: {fileID: 21300000, guid: 7c806eb876a96864d9a7ac806677cb96, type: 3}
   itemName: Sugar
-  type: ingr
+  recipe: []
+  type: ingredient
   edible: 0
   mealValue: 10
   inrgedientCost: 25

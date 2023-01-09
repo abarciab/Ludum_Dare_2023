@@ -13,6 +13,7 @@ public class EquipmentScript : MonoBehaviour
 
     public bool canInteract = false;
     public bool used = false;
+    public bool burnt = false;
     public List<ItemObject> currentItems = new List<ItemObject>();
     public List<ItemObject> cookingItems = new List<ItemObject>();
     public Dictionary<string, int> numTypes = new Dictionary<string, int>();
@@ -81,9 +82,11 @@ public class EquipmentScript : MonoBehaviour
             cookingItems.Clear();
             cookingTimer = burntTimer;
         }
-        else if (cookingTimer <= -1*burntTimer && currentItems.Count != 0) {
-            foreach (ItemObject item in currentItems) {
-                currentItems.Remove(item);
+        else if (!burnt && burntTimer > 0 && cookingTimer <= -1*burntTimer && currentItems.Count != 0) {
+            print("food got burnt!");
+            burnt = true;
+            for (int i = 0; i < currentItems.Count; i++) {
+                currentItems.Remove(currentItems[i]);
                 currentItems.Add(burntFood);
             }
         }
@@ -156,6 +159,7 @@ public class EquipmentScript : MonoBehaviour
         }
         currentItems.Clear();
         used = false;
+        burnt = false;
     }
 
     /*
@@ -182,10 +186,11 @@ public class EquipmentScript : MonoBehaviour
         Dictionary<string, int> usedIng = new Dictionary<string, int>();
         List<ItemObject> usedItems = new List<ItemObject>();
 
-        foreach (ItemObject dish in possibleResults) {
-            // if max dishes reached, break
+        for (int i = 0; i < possibleResults.Count; i++) {
             if (cookingItems.Count >= maxDishes) break;
 
+            ItemObject dish = possibleResults[i];
+            bool lastDish = cookingItems.Count == maxDishes-1;
             int recipeSize = 0;
             bool overintake = false;
             foreach (Ingredient ingr in dish.recipe) {
@@ -194,8 +199,8 @@ public class EquipmentScript : MonoBehaviour
             }
             // if their's only one slot left, only check recipies of the same size as the items OR overload recipes
             if (
-                recipeSize == 0 || recipeSize >= currentItems.Count 
-                || (cookingItems.Count >= maxDishes-1 && (recipeSize != currentItems.Count && !overintake))
+                (recipeSize == 0 || recipeSize > currentItems.Count)
+                || (lastDish && (recipeSize != currentItems.Count && !overintake))
             ) {
                 continue;
             }
@@ -237,19 +242,20 @@ public class EquipmentScript : MonoBehaviour
                 }
             }
             print("used items:");
-            foreach (ItemObject i in usedItems) print(i);
-            // if it overintakes & it used less than the current items & is last slot, do not make
-            bool cook = (
-                usedItems.Count >= recipeSize
-                && !(overintake && cookingItems.Count >= maxDishes-1 && usedItems.Count < currentItems.Count)
-            );
-            // bool failOverload = (usedItems.Count < recipeSize) || (overintake && cookingItems.Count >= maxDishes-1 && usedItems.Count < currentItems.Count)
+            foreach (ItemObject item in usedItems) print(item);
+            // cook IF: used items >= recipeSize 
+            bool cook = (usedItems.Count >= recipeSize);
+            // however if: overintake & last dish: cook only if every item is used
+            if (cook && lastDish && overintake) {
+                cook = usedItems.Count >= currentItems.Count;
+            }
             
             if (cook) {
                 print($"make {dish.itemName}");
                 foreach(ItemObject item in usedItems) {
                     currentItems.Remove(item);
                 }
+                i--;
                 cookingItems.Add(dish);
             }
             else {
@@ -257,7 +263,8 @@ public class EquipmentScript : MonoBehaviour
             }
             usedItems.Clear();
             usedIng.Clear();
-        }
+        } // end of dish loop
+        // if there are remaining items & still space, make strange food
         if (currentItems.Count != 0 && cookingItems.Count < maxDishes) {
             print("strange food made");
             cookingItems.Add(strangeFood);

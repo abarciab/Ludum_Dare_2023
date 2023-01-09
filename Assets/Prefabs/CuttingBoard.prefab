@@ -471,8 +471,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSlots: 3
+  maxDishes: 3
   canInteract: 0
   used: 0
+  burnt: 0
   currentItems: []
   cookingItems: []
   possibleResults:
@@ -481,7 +483,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2d3e5ebc59193b04d8def0ad6cee5f30, type: 2}
   - {fileID: 11400000, guid: cb9b2a13ef56bab45b5459e7860e8ca8, type: 2}
   validTypes:
-  - vege
+  - veggie
   - meat
   UIContainer: []
   cookingTimer: 0
