@@ -16,7 +16,7 @@ MonoBehaviour:
   itemSprite: {fileID: 21300000, guid: 0bdc691e319c6ce4c8430df618481193, type: 3}
   itemName: Carrot
   recipe: []
-  type: vege
+  type: veggie
   edible: 1
   mealValue: 10
   inrgedientCost: 0
