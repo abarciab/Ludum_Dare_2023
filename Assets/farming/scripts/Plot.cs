@@ -74,7 +74,7 @@ public class Plot : MonoBehaviour
         if (toPlant != null)
             PlantHere(toPlant);
     }
-
+        
     void RemoveCurrentPlant()
     {
         ripeParticles.SetActive(false);
