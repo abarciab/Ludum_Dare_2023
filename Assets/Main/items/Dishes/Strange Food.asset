@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1170d66558160d46998d7f735e2abf7, type: 3}
   m_Name: Strange Food
   m_EditorClassIdentifier: 
-  hotbarIndex: -1
-  itemSprite: {fileID: 21300000, guid: 0f6f99febf4c6e741af03ae3ea36bc9d, type: 3}
+  hotbarIndex: 1
+  itemSprite: {fileID: 21300000, guid: bba43bc4d5df9434eb62bfbe576893f2, type: 3}
   itemName: Strange Food
   equipment: 
   recipe: []

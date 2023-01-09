@@ -247,6 +247,9 @@ public class EquipmentScript : MonoBehaviour
     }
 
     void TakeItems() {
+        if (used && !cookingComplete) {
+            return;
+        }
         if (used)
             CheckDishQuality();
         foreach(ItemObject item in currentItems) {

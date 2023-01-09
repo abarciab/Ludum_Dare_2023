@@ -7970,6 +7970,12 @@ MonoBehaviour:
   - invSlotIndex: 0
     item: {fileID: 11400000, guid: 6c496a8ca4154044396304e123ee34d8, type: 2}
     amount: 1
+  - invSlotIndex: 0
+    item: {fileID: 11400000, guid: ec25feb9afb32fc46ada18ea21bb1a60, type: 2}
+    amount: 1
+  - invSlotIndex: 0
+    item: {fileID: 11400000, guid: ab594840d0ce1dc488cea83678bd939f, type: 2}
+    amount: 1
   hotbarIndex: 0
   selectedItem: {fileID: 0}
   moneyDisplay: {fileID: 1638166938}
