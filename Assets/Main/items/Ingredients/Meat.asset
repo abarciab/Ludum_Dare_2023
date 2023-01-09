@@ -21,4 +21,4 @@ MonoBehaviour:
   type: meat
   edible: 0
   mealValue: 0
-  inrgedientCost: 45
+  inrgedientCost: 20

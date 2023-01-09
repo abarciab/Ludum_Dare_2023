@@ -22,7 +22,7 @@ public class ItemObject : ScriptableObject
     public string equipment;
     [SerializeField]
     public List<Ingredient> recipe = new List<Ingredient>();
-    [SerializeField]
+    [SerializeField, TextArea(3, 10)]
     public string description;
     /*
     types:

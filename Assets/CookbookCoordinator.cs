@@ -4,15 +4,33 @@ using UnityEngine;
 
 public class CookbookCoordinator : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] GameObject nextPage, prevPage;
+    [SerializeField] PageObject pageScript;
+
+    [SerializeField] List<ItemObject> Dishes;
+    int currentPage;
+
+    private void Start()
     {
-        
+        DisplayPage();
     }
 
-    // Update is called once per frame
-    void Update()
+    void DisplayPage()
     {
-        
+        pageScript.Display(Dishes[currentPage]);
+        nextPage.gameObject.SetActive(currentPage < Dishes.Count-1);
+        prevPage.gameObject.SetActive(currentPage > 0);
+    }
+
+    public void NextPage()
+    {
+        currentPage += 1;
+        DisplayPage();
+    }
+
+    public void PrevPage()
+    {
+        currentPage -= 1;
+        DisplayPage();
     }
 }

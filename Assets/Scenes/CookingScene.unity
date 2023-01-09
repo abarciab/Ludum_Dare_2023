@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1034685253148873861, guid: 5d9c01a228291b74e80d69fc89af9b9f, type: 3}
+      propertyPath: price
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 1034685253148873863, guid: 5d9c01a228291b74e80d69fc89af9b9f, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -191,6 +195,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2655361908437227052, guid: 7a03d3391b2983a4ba9736f61d4f24f8, type: 3}
+      propertyPath: price
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 5609803573118890304, guid: 7a03d3391b2983a4ba9736f61d4f24f8, type: 3}
       propertyPath: m_Name
       value: Pot
@@ -252,6 +260,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1034685253148873861, guid: 5d9c01a228291b74e80d69fc89af9b9f, type: 3}
+      propertyPath: price
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 1034685253148873863, guid: 5d9c01a228291b74e80d69fc89af9b9f, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -313,6 +325,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4562595490407867873, guid: b12a97f2e4aeea44aa3a80d8063de315, type: 3}
+      propertyPath: price
+      value: 250
+      objectReference: {fileID: 0}
     - target: {fileID: 4562595490407867873, guid: b12a97f2e4aeea44aa3a80d8063de315, type: 3}
       propertyPath: bought
       value: 1

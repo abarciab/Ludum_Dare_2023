@@ -32,7 +32,8 @@ MonoBehaviour:
   - ingredient: {fileID: 11400000, guid: bff8561e70f38ef4cbf6a28e803451d0, type: 2}
     quantity: 1
     overintake: 0
-  description: Winner winner chicken dinner!
+  description: "1. Buy meat from catalog \n2. Buy sugarm, eggs, oil, and  milk from
+    catalog\n3. Chop meat at cutting board\n4. Combine all 5 ingredients at the stove"
   type: dish
   edible: 1
   mealValue: 500

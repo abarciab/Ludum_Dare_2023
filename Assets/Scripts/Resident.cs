@@ -1,10 +1,7 @@
 using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using UnityEditorInternal;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class Resident : MonoBehaviour
 {

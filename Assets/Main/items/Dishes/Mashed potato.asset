@@ -20,7 +20,15 @@ MonoBehaviour:
   - ingredient: {fileID: 11400000, guid: ec25feb9afb32fc46ada18ea21bb1a60, type: 2}
     quantity: 2
     overintake: 1
-  description: Don't ask why you use a pot.
+  - ingredient: {fileID: 11400000, guid: 6f22bf1007901af499cacc56eb054012, type: 2}
+    quantity: 1
+    overintake: 0
+  description: '1. Grow 2 potatoes
+
+    2. Buy milk from the catalog
+
+    3. Combine
+    potatoes and milk in a pot'
   type: dish
   edible: 1
   mealValue: 100

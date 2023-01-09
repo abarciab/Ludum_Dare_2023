@@ -15,7 +15,7 @@ MonoBehaviour:
   hotbarIndex: -1
   itemSprite: {fileID: 21300000, guid: 236e37de29e9e004d909d2d1c5a0902b, type: 3}
   itemName: Bacon & Eggs
-  equipment: stove
+  equipment: Stove
   recipe:
   - ingredient: {fileID: 11400000, guid: 8ce618fd9076f81409f62dfd064b32f5, type: 2}
     quantity: 1
@@ -23,7 +23,14 @@ MonoBehaviour:
   - ingredient: {fileID: 11400000, guid: 3001da1551e811048b6a52b510e6dc96, type: 2}
     quantity: 1
     overintake: 1
-  description: Tried and true classic!
+  description: '1. Buy meat from catalog
+
+    2. Chop meat at cutting board
+
+    3.
+    Buy eggs from catalog
+
+    4. combine chopped meat and eggs at stove'
   type: dish
   edible: 1
   mealValue: 100

@@ -15,7 +15,7 @@ MonoBehaviour:
   hotbarIndex: -1
   itemSprite: {fileID: 21300000, guid: 070d5a78d6c46b648af7ac790ebea8af, type: 3}
   itemName: Veggie Stir Fry
-  equipment: stove, oven, pot
+  equipment: Stove
   recipe:
   - ingredient: {fileID: 11400000, guid: b4516a4e0be9ed94abe439f9a8ca9257, type: 2}
     quantity: 1
@@ -23,7 +23,12 @@ MonoBehaviour:
   - ingredient: {fileID: 11400000, guid: bff8561e70f38ef4cbf6a28e803451d0, type: 2}
     quantity: 1
     overintake: 0
-  description: Simple way to make vegetables palatable!
+  description: '1. Grow 1 or more vetables
+
+    2. Buy oil from the catalog
+
+    3.
+    Combine everything on the stove'
   type: dish
   edible: 1
   mealValue: 100

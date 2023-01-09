@@ -32,7 +32,15 @@ MonoBehaviour:
   - ingredient: {fileID: 11400000, guid: 1e707287518747d42bf9ffe3b737ff9d, type: 2}
     quantity: 1
     overintake: 0
-  description: A hearty meal that reminds one of home.
+  description: '1. Grow 1 tomato and 1 carrot
+
+    2. Buy bread, milk, and sugar
+    from the catalog
+
+    3. Chop vegtables at the cutting board
+
+    4. Combine
+    all ingredients in a pot'
   type: dish
   edible: 1
   mealValue: 500

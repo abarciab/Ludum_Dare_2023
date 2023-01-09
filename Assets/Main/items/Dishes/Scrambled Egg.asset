@@ -20,7 +20,9 @@ MonoBehaviour:
   - ingredient: {fileID: 11400000, guid: 3001da1551e811048b6a52b510e6dc96, type: 2}
     quantity: 1
     overintake: 1
-  description: It's breakfast time!
+  description: '1. Buy eggs from catlog
+
+    2. Cook eggs at stove'
   type: dish
   edible: 1
   mealValue: 100

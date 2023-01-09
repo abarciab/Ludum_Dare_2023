@@ -18,15 +18,23 @@ MonoBehaviour:
   equipment: oven
   recipe:
   - ingredient: {fileID: 11400000, guid: be4af0fb032ca244fa17447d581cada7, type: 2}
-    quantity: 1
+    quantity: 2
     overintake: 0
   - ingredient: {fileID: 11400000, guid: 74c6c3ee10e0cad429a696d2ce33dbb8, type: 2}
-    quantity: 1
+    quantity: 2
     overintake: 0
   - ingredient: {fileID: 11400000, guid: 8ce618fd9076f81409f62dfd064b32f5, type: 2}
     quantity: 1
     overintake: 0
-  description: Rumor says Shepard doesn't actually like pie...
+  description: '1. Grow 2 potatoe and 2 carrots
+
+    2. Order meat from the catalog
+
+    3.
+    Chop cegtables and meat at a cutting board
+
+    4. Combine all ingredients in
+    the oven'
   type: dish
   edible: 1
   mealValue: 300

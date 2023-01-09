@@ -20,7 +20,12 @@ MonoBehaviour:
   - ingredient: {fileID: 11400000, guid: be4af0fb032ca244fa17447d581cada7, type: 2}
     quantity: 1
     overintake: 1
-  description: Lovely crunchy taste!
+  description: '1. Grow potato
+
+    2. Chop potato at cutting board
+
+    3. Bake
+    chopped potato in oven'
   type: dish
   edible: 1
   mealValue: 100

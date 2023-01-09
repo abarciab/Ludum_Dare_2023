@@ -29,7 +29,14 @@ MonoBehaviour:
   - ingredient: {fileID: 11400000, guid: 8ce618fd9076f81409f62dfd064b32f5, type: 2}
     quantity: 1
     overintake: 0
-  description: A wonderful mix of meat and vegetables!
+  description: '1. Grow a potato and tomato
+
+    2. Buy milk and meat from catalog
+
+    3.
+    Chop meat and vegtables at cutting board
+
+    4. Combine all ingredients in pot'
   type: dish
   edible: 1
   mealValue: 300

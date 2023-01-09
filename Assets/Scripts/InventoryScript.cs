@@ -24,7 +24,6 @@ public class InventoryScript : MonoBehaviour {
     void Start() {
         AddExistingItemsToHotbar();
         UpdateHotbar();
-        money = 100;
     }
 
     void AddExistingItemsToHotbar()

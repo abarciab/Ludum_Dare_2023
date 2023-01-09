@@ -20,7 +20,10 @@ MonoBehaviour:
   - ingredient: {fileID: 11400000, guid: ab594840d0ce1dc488cea83678bd939f, type: 2}
     quantity: 1
     overintake: 1
-  description: Going back to the stone age with this one.
+  description: '1. Buy meat from the catalog
+
+    2. Cook in the oven, in a pot,
+    or on the stove'
   type: dish
   edible: 1
   mealValue: 50

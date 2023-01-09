@@ -6,21 +6,19 @@ using TMPro;
 
 public class PageObject : MonoBehaviour
 {
+    ItemObject dish;
     [SerializeField] Image dishImage;
     [SerializeField] TextMeshProUGUI nameText;
     [SerializeField] TextMeshProUGUI equipmentText;
     [SerializeField] TextMeshProUGUI descText;
-    [SerializeField] GameObject recipeContainer;
-    [SerializeField] ItemObject dish;
-    // Start is called before the first frame update
-    void Start()
+    
+    
+    public void Display(ItemObject _dish)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        dish = _dish;
+        dishImage.sprite = dish.itemSprite;
+        nameText.text = dish.name;
+        equipmentText.text = dish.equipment;
+        descText.text = dish.description;
     }
 }
