@@ -84,7 +84,7 @@ public class Plot : MonoBehaviour
         }
         if (currentPlant.currentStage == Plant.GrowthStage.mature) {
             watered = false;
-            AudioManager.instance.PlayGlobal(1);
+            AudioManager.instance.PlayHere(1, source);
             GameManager.instance.inventory.AddItem(currentPlant.plantItem);
             currentPlant = null;
             return;
@@ -109,6 +109,7 @@ public class Plot : MonoBehaviour
         var inv = GameManager.instance.inventory;
 
         controller.enabled = inv.enabled = false;
+        GameManager.instance.player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         yield return new WaitForSeconds(GameManager.instance.wateringTime);
         watered = controller.enabled = inv.enabled = true;
     }

@@ -45,6 +45,8 @@ public class InventoryScript : MonoBehaviour {
 
 
     public bool AddItem(ItemObject _item, int _amount=1) {
+        if (_item == null) return false;
+
         for (int i = 0; i < container.Count; i++) {
             if (container[i].item == _item) {
                 container[i].AddAmount(_amount);
