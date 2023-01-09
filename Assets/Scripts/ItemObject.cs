@@ -7,6 +7,8 @@ public struct Ingredient {
     [SerializeField]
     public string ingredient;
     [SerializeField]
+    public ItemObject ingredientItem;
+    [SerializeField]
     public int quantity;
     [SerializeField]
     public bool overintake;
