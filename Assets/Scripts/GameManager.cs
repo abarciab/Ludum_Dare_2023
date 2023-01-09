@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public float wateringTime = 2f;
     int convoIndex;
     List<string> lines;
+    Resident final;
 
     [Header("Daily Cycle")]
     [SerializeField] GameObject nightSky;
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviour
     public static Action DiningEvent;
     [SerializeField] float diningInterval;
     float diningCountdown;
+    [SerializeField] GameObject winScreen;
     
     bool readyToAdvanceDay;
     [Header("UI")]
@@ -64,10 +66,10 @@ public class GameManager : MonoBehaviour
         return num;
     }
 
-    public void StartConvo(List<string> _lines)
+    public void StartConvo(List<string> _lines, Resident speaker = null)
     {
+        if (speaker != null) final = speaker;
         lines = _lines;
-        //clickCountdown = clickCooldown;
         convoIndex = 0;
         NextLine();
     }
@@ -107,6 +109,12 @@ public class GameManager : MonoBehaviour
         lines = new List<string>();
         completeLine();
         dialogueParent.gameObject.SetActive(false);
+        if (final != null) final.Die();
+        else if (readyToAdvanceDay) AdvanceDay();
+    }
+
+    public void AdvanceIfReadty()
+    {
         if (readyToAdvanceDay) AdvanceDay();
     }
 
@@ -159,7 +167,8 @@ public class GameManager : MonoBehaviour
 
     void EndGame()
     {
-        print("YOU WIN!");
+        winScreen.SetActive(true);
+        player.gameObject.SetActive(false);
     }
 
     void AdvanceDay()
@@ -180,6 +189,11 @@ public class GameManager : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Space))
             completeLine();
+    }
+
+    public void ExitToMainMenu()
+    {
+        SceneManager.LoadScene(4);
     }
 
     void RestartScene()

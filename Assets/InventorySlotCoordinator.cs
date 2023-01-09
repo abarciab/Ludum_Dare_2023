@@ -49,8 +49,10 @@ public class InventorySlotCoordinator : MonoBehaviour
 
     void RemoveItem()
     {
+        if (itemData != null) InventoryManager.instance.EndToolTip(itemData.item.name);
         itemData = null;
         DisplayItem();
+        DisplayCount(0);
     }
 
     void DisplayItem(InventorySlot _itemData = null)
@@ -78,5 +80,18 @@ public class InventorySlotCoordinator : MonoBehaviour
     {
         itemCount.text = count.ToString();
         itemCountParent.SetActive(true);
+        if (count == 0) itemCountParent.SetActive(false);
+    }
+
+    public void Hover()
+    {
+        if (itemData == null) return;
+        InventoryManager.instance.DisplayToolTip(itemData.item.name);
+    }
+
+    public void ExitHover()
+    {
+        if (itemData == null) return;
+        InventoryManager.instance.EndToolTip(itemData.item.name);
     }
 }

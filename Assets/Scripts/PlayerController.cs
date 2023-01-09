@@ -13,10 +13,12 @@ public class PlayerController : MonoBehaviour
     AudioSource source;
     float originalVolume;
     bool fading;
-
+    Animator animator;
+    bool up;
 
     void Start()
     {
+        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();   
         source = GetComponent<AudioSource>();
         originalVolume = source.volume;
@@ -24,6 +26,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        animator.SetBool("Up", up);
         HandleInput();
     }
 
@@ -31,18 +34,28 @@ public class PlayerController : MonoBehaviour
     {
         var speed = new Vector2();
 
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W)) {
             speed += (Vector2.up * walkSpeed);
-        else if (Input.GetKey(KeyCode.S))
+            up = true;
+        }
+        else if (Input.GetKey(KeyCode.S)) {
             speed += (Vector2.down * walkSpeed);
+            up = false;
+        }
         if (Input.GetKey(KeyCode.A))
             speed += (Vector2.left * walkSpeed);
         else if (Input.GetKey(KeyCode.D))
             speed += (Vector2.right * walkSpeed);   
 
         rb.velocity = Vector2.Lerp(rb.velocity, speed, friction);
-        if (speed != new Vector2()) PlayFootStepSound();
-        else StopFoodSteps();
+        if (speed != new Vector2()) {
+            PlayFootStepSound();
+            animator.SetBool("walking", true);
+        }
+        else { 
+            StopFoodSteps();
+            animator.SetBool("walking", false);
+        }
     }
 
     void StopFoodSteps()

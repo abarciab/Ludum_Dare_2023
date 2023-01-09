@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Burnt Food
   m_EditorClassIdentifier: 
   hotbarIndex: -1
-  itemSprite: {fileID: 21300000, guid: 0f6f99febf4c6e741af03ae3ea36bc9d, type: 3}
+  itemSprite: {fileID: 21300000, guid: b555ef617dbb28745a80eba887ce302a, type: 3}
   itemName: Burnt Food
   recipe: []
   type: dish

@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +11,8 @@ public class InventoryManager : MonoBehaviour
     public bool holdingItem;
     public InventorySlot heldItem;
     InventoryScript inv;
+    [SerializeField] TextMeshProUGUI toolTip;
+
 
     private void Awake()
     {
@@ -23,8 +25,23 @@ public class InventoryManager : MonoBehaviour
         GameManager.instance.invParent = gameObject;
     }
 
+    public void DisplayToolTip(string item)
+    {
+        if (toolTip.transform.parent.gameObject.activeInHierarchy && toolTip.text == item) return;
+        toolTip.transform.parent.gameObject.SetActive(true);
+        toolTip.text = item;
+    }
+
+    public void EndToolTip(string item)
+    {
+        if (toolTip.text != item) return;
+        toolTip.transform.parent.gameObject.SetActive(false);
+        toolTip.text = item;
+    }
+
     private void Update()
     {
+        if (toolTip.transform.parent.gameObject.activeInHierarchy) toolTip.transform.parent.position = Input.mousePosition;
         if (holdingItem) heldItemImg.transform.position = Input.mousePosition;
         else heldItemImg.gameObject.SetActive(false);
     }

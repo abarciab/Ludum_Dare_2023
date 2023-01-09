@@ -31,7 +31,7 @@ public class HotbarSlotCoordinator : MonoBehaviour
 
     public void PickupItem()
     {
-        if (!InventoryManager.instance.gameObject.activeInHierarchy) return;
+        if (InventoryManager.instance == null || !InventoryManager.instance.gameObject.activeInHierarchy) return;
 
         InventorySlot itemToStore = null;
         if (InventoryManager.instance.holdingItem) {
@@ -51,8 +51,11 @@ public class HotbarSlotCoordinator : MonoBehaviour
     void RemoveItem()
     {
         inv.SetHotbarSlot(itemData, -1);
+        if (itemData != null) InventoryManager.instance.EndToolTip(itemData.item.name);
         itemData = null;
         DisplayItem();
+        DisplayCount(0);
+
     }
 
     void DisplayItem(InventorySlot _itemData = null)
@@ -80,6 +83,20 @@ public class HotbarSlotCoordinator : MonoBehaviour
     {
         itemCount.text = count.ToString();
         itemCountParent.SetActive(true);
+        if (count == 0) itemCountParent.SetActive(false);
+    }
+
+    public void Hover()
+    {
+        if (InventoryManager.instance == null || itemData == null || !InventoryManager.instance.gameObject.activeInHierarchy) return;
+        InventoryManager.instance.DisplayToolTip(itemData.item.name);
+    }
+
+    public void ExitHover()
+    {
+        print("exiting");
+        if (itemData == null || InventoryManager.instance == null || !InventoryManager.instance.gameObject.activeInHierarchy) return;
+        InventoryManager.instance.EndToolTip(itemData.item.name);
     }
 
 }

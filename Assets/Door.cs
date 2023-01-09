@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [ExecuteAlways]
@@ -21,11 +22,18 @@ public class Door : MonoBehaviour
 
     private void Start()
     {
-        source = gameObject.AddComponent<AudioSource>();
+        Setup();   
+    }
+
+    void Setup()
+    {
+        if (GetComponent<AudioManager>() == null) gameObject.AddComponent<AudioSource>();
+        source = gameObject.GetComponent<AudioSource>();
     }
 
     private void Update()
     {
+        
         if (openTest) {
             openTest = false;
             Open();
@@ -67,6 +75,7 @@ public class Door : MonoBehaviour
 
     void Close()
     {
+        if (source == null) Setup();
         if (open) AudioManager.instance.PlayHere(5, source);
 
         transform.rotation = closeRot;
@@ -76,6 +85,7 @@ public class Door : MonoBehaviour
 
     void Open()
     {
+        if (source == null) Setup();
         if (!open) AudioManager.instance.PlayHere(5, source);
 
         transform.rotation = openRot;

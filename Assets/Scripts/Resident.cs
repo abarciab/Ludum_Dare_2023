@@ -15,6 +15,7 @@ public class Resident : MonoBehaviour
         public List<string> dialogue;
         public bool keepItem;
         public bool repeatable;
+        public bool final;
     }
     [System.Serializable]
     public class Conversation
@@ -92,7 +93,7 @@ public class Resident : MonoBehaviour
 
         for (int i = 0; i < conversations.Count; i++) {
             if (conversations[i].trigger == _item) {
-                GameManager.instance.StartConvo(conversations[i].dialogue);
+                GameManager.instance.StartConvo(conversations[i].dialogue, conversations[i].final ? this : null);
                 if (!conversations[i].keepItem) GameManager.instance.inventory.RemoveItem(_item);
                 if (!conversations[i].repeatable) conversations.RemoveAt(i);
                 return;
@@ -108,6 +109,19 @@ public class Resident : MonoBehaviour
         else {
             GameManager.instance.StartConvo(defaultConvo.dialogue);
         }
+    }
+
+    public void Die()
+    {
+        print("done dying");
+        DoneDying();   
+    }
+
+    public void DoneDying()
+    {
+        GameManager.instance.residents.Remove(this);
+        GameManager.instance.AdvanceIfReadty();
+        gameObject.SetActive(false);
     }
 
     void Eat(ItemObject meal)
