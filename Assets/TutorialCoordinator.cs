@@ -24,13 +24,12 @@ public class TutorialCoordinator : MonoBehaviour
         if (index == 0 && GameManager.instance.inventory.HasItem("potato")) NextItem();
         if (index == 1 && GameManager.instance.inventory.HasItem("french fries")) NextItem();
         if (index == 2 && GameManager.instance.inventory.money > 0) NextItem();
-        if (index == 2) lastInstructionTime -= Time.deltaTime;
+        if (index >= 3) lastInstructionTime -= Time.deltaTime;
         if (index == 3 && lastInstructionTime <= 0) {
             GameManager.instance.inventory.AddItem(carrotPacket);
             GameManager.instance.inventory.AddItem(tomatoPacket);
             gameObject.SetActive(false);
         }
-        
     }
 
     private void Start()

@@ -7,6 +7,6 @@ public class CreditsManager : MonoBehaviour
 {
     public void Back()
     {
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene(0);
     }
 }

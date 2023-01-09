@@ -11,11 +11,11 @@ public class MainMenuManager : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene(0);
-        SceneManager.LoadScene(1, LoadSceneMode.Additive);
+        SceneManager.LoadScene(1);
         SceneManager.LoadScene(2, LoadSceneMode.Additive);
         SceneManager.LoadScene(3, LoadSceneMode.Additive);
-        SceneManager.UnloadSceneAsync(4);
+        SceneManager.LoadScene(4, LoadSceneMode.Additive);
+        SceneManager.UnloadSceneAsync(0);
     }
 
     public void ViewCredits()

@@ -120,6 +120,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        if (winScreen.activeInHierarchy) { if (Input.GetKeyDown(KeyCode.E)) ExitToMainMenu(); return; }
         if (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.E)) { 
             if (InventoryManager.instance != null) InventoryManager.instance.PutDownHeldItemInInv(); 
             invParent.SetActive(!invParent.activeInHierarchy); 
@@ -196,15 +197,16 @@ public class GameManager : MonoBehaviour
 
     public void ExitToMainMenu()
     {
-        SceneManager.LoadScene(4);
+        print("AHHH");
+        SceneManager.LoadScene(0);
     }
 
     void RestartScene()
     {
-        SceneManager.LoadScene(0);
-        SceneManager.LoadScene(1, LoadSceneMode.Additive);
+        SceneManager.LoadScene(1);
         SceneManager.LoadScene(2, LoadSceneMode.Additive);
         SceneManager.LoadScene(3, LoadSceneMode.Additive);
+        SceneManager.LoadScene(4, LoadSceneMode.Additive);
     }
 
     IEnumerator DisplayLine(string line)

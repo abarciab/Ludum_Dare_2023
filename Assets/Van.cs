@@ -6,7 +6,7 @@ public class Van : MonoBehaviour
 {
     [SerializeField] GameObject packagePrefab;
     [SerializeField] Vector2 packagePos;
-    List<ItemObject> scheduledItems = new List<ItemObject>();
+    [SerializeField]List<ItemObject> scheduledItems = new List<ItemObject>();
     bool delivering;
 
     private void Start()
@@ -17,7 +17,7 @@ public class Van : MonoBehaviour
 
     public void DropOffItem(ItemObject item)
     {
-        gameObject.SetActive(false);
+        if (!delivering) gameObject.SetActive(false);
         scheduledItems.Add(item);
 
         if (!delivering) {

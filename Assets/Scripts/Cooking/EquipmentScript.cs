@@ -112,6 +112,7 @@ public class EquipmentScript : MonoBehaviour
 
     private void OnMouseOver()
     {
+        if (!CanInteract()) return;
         if (Input.GetMouseButtonDown(1)) {
             TakeItems();
         }
@@ -119,6 +120,7 @@ public class EquipmentScript : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (!CanInteract()) return;
         if (!bought) {
             TryToBuy();
             return;

@@ -39,7 +39,7 @@ public class InventoryScript : MonoBehaviour {
             }
         }
 
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 8; i++) {
             for (int j = 0; j < container.Count; j++) {
                 //if (container[j].item.itemName.ToLower() == "potato seeds") continue;
                 if (container[j].item.hotbarIndex == -1 && container[j].invSlotIndex == -1) {
@@ -56,6 +56,7 @@ public class InventoryScript : MonoBehaviour {
             if (container[i].item.itemName.ToUpper() == name.ToUpper()) return true;
         }
         return false;
+
     }
 
     public bool AddItem(ItemObject _item, int _amount=1) {
@@ -71,6 +72,7 @@ public class InventoryScript : MonoBehaviour {
 
         _item.hotbarIndex = GetFreeHotbarSlot();
         int invSlotIndex = _item.hotbarIndex == -1 ? GetFreeInvSlot() : -1;
+        print("hotbar: " + _item.hotbarIndex + ", invSlot: " + invSlotIndex);
         container.Add(new InventorySlot(_item, invSlotIndex, _amount));
         if (_item.hotbarIndex != -1) UpdateHotbar();
         
@@ -140,7 +142,7 @@ public class InventoryScript : MonoBehaviour {
     public int GetFreeHotbarSlot()
     {
         int freeSlot = -1;
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 8; i++) {
             freeSlot = i;
             for (int j = 0; j < container.Count; j++) {
                 if (container[j].item.hotbarIndex == i) {
@@ -213,10 +215,11 @@ public class InventorySlot {
     public int invSlotIndex;
     public ItemObject item;
     public int amount;
-    public InventorySlot(ItemObject _item, int invSlotIndex, int _amount = 1)
+    public InventorySlot(ItemObject _item, int _invSlotIndex, int _amount = 1)
     {
         item = _item;
         amount = _amount;
+        invSlotIndex = _invSlotIndex;
     }
     public void AddAmount(int value)
     {
