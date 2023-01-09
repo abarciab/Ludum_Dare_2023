@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Chopped Veggies
   m_EditorClassIdentifier: 
   hotbarIndex: -1
-  itemSprite: {fileID: 21300000, guid: 0f6f99febf4c6e741af03ae3ea36bc9d, type: 3}
+  itemSprite: {fileID: 21300000, guid: 85556aedd547ea64c9178753c962f493, type: 3}
   itemName: Chopped Veggies
   equipment: chopping board
   recipe:
@@ -22,6 +22,6 @@ MonoBehaviour:
     overintake: 0
   description: 
   type: veggie
-  edible: 0
-  mealValue: 15
+  edible: 1
+  mealValue: 5
   inrgedientCost: 0

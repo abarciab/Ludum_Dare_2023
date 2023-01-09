@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Chopped Meat
   m_EditorClassIdentifier: 
   hotbarIndex: -1
-  itemSprite: {fileID: 21300000, guid: 0f6f99febf4c6e741af03ae3ea36bc9d, type: 3}
+  itemSprite: {fileID: 21300000, guid: 22ef6773ce7b6c345ab28255d57a2cb9, type: 3}
   itemName: Chopped Meat
   equipment: chopping board
   recipe:
@@ -22,6 +22,6 @@ MonoBehaviour:
     overintake: 0
   description: 
   type: meat
-  edible: 0
+  edible: 1
   mealValue: 15
   inrgedientCost: 0

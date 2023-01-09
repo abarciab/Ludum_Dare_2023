@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1170d66558160d46998d7f735e2abf7, type: 3}
-  m_Name: Veggie stiry fry
+  m_Name: Veggie stir fry
   m_EditorClassIdentifier: 
   hotbarIndex: -1
   itemSprite: {fileID: 21300000, guid: 070d5a78d6c46b648af7ac790ebea8af, type: 3}
   itemName: Veggie Stir Fry
-  equipment: stove
+  equipment: stove, oven, pot
   recipe:
   - ingredient: {fileID: 11400000, guid: b4516a4e0be9ed94abe439f9a8ca9257, type: 2}
     quantity: 1

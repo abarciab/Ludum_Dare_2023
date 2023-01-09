@@ -129,7 +129,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2026932480163923151, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
       propertyPath: possibleResults.Array.size
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2026932480163923151, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
       propertyPath: possibleResults.Array.data[0]
@@ -155,6 +155,10 @@ PrefabInstance:
       propertyPath: possibleResults.Array.data[5]
       value: 
       objectReference: {fileID: 11400000, guid: 4d16013f99a90ef4fae6e1cfe05dddc3, type: 2}
+    - target: {fileID: 2026932480163923151, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
+      propertyPath: possibleResults.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: 35216b1d9765ea04db2fe1c7662a991f, type: 2}
     - target: {fileID: 2026932480163923155, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
       propertyPath: m_Name
       value: Oven

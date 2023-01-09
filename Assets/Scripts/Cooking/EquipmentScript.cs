@@ -18,9 +18,6 @@ public class EquipmentScript : MonoBehaviour
     public bool burnt = false;
     public bool usesFire = true;
 
-    // dish result
-    private string result = "";
-
     [SerializeField] public ParticleSystem smokeEmitter;
     protected Sprite defaultSprite;
     [SerializeField] protected Sprite usedSprite;
@@ -49,7 +46,7 @@ public class EquipmentScript : MonoBehaviour
     private AudioSource source;
     private AudioSource smokeSource;
 
-    public int GreatMealValue = 50;
+    private int GreatMealValue = 300;
 
     private float blipFrequencyRate = 0.2f;
     bool cookingComplete;
@@ -91,6 +88,21 @@ public class EquipmentScript : MonoBehaviour
             priceText.enabled = true;
             priceText.text = $"${price}";           
         }
+        ButtonInputs();
+    }
+
+    void ButtonInputs() {
+        if (bought) {
+            if (Input.GetKeyDown(KeyCode.F)) {
+                AddItems();
+            }
+            if (Input.GetKeyDown(KeyCode.G)) {
+                TakeItems();
+            }
+            if (Input.GetKeyDown(KeyCode.C)) {
+                Cook();
+            }
+        }
     }
 
     bool CanInteract()
@@ -119,7 +131,7 @@ public class EquipmentScript : MonoBehaviour
     void TryToBuy()
     {
         if (playerInventory.money <= price) return;
-
+        AudioManager.instance.PlayHere(14, source);
         bought = true;
         playerInventory.money -= price;
     }

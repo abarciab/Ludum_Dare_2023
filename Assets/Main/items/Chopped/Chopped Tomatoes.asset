@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Chopped Tomatoes
   m_EditorClassIdentifier: 
   hotbarIndex: 4
-  itemSprite: {fileID: 21300000, guid: 0f6f99febf4c6e741af03ae3ea36bc9d, type: 3}
+  itemSprite: {fileID: 21300000, guid: 42f9f2a4d4b8f2a45b5683a5de0a7436, type: 3}
   itemName: Chopped Tomatoes
   equipment: chopping board
   recipe:
@@ -22,6 +22,6 @@ MonoBehaviour:
     overintake: 0
   description: 
   type: veggie
-  edible: 0
+  edible: 1
   mealValue: 15
   inrgedientCost: 0

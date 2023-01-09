@@ -177,7 +177,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 449789493, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2026932480163923148, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
       propertyPath: m_Sprite
@@ -374,7 +374,6 @@ MonoBehaviour:
   maxDishes: 1
   bought: 0
   price: 10
-  canInteract: 0
   used: 0
   burnt: 0
   usesFire: 1
@@ -387,6 +386,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dc46583609911e046871e81281ace5d4, type: 2}
   - {fileID: 11400000, guid: fe244f6f5ae95fc4189d3e35be1338f9, type: 2}
   - {fileID: 11400000, guid: 4d16013f99a90ef4fae6e1cfe05dddc3, type: 2}
+  - {fileID: 11400000, guid: 9a4971e8c451627499af63e580f1fd75, type: 2}
+  - {fileID: 11400000, guid: f8b29a4d98e2e8e4387b840d0302b2da, type: 2}
+  - {fileID: 11400000, guid: f131d0d4fd87e374d9b6241fa32a02a7, type: 2}
+  - {fileID: 11400000, guid: 5a85d093346b0c842af1ac5d0b26e84f, type: 2}
   validTypes:
   - veggie
   - meat
