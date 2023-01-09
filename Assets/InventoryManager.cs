@@ -53,6 +53,13 @@ public class InventoryManager : MonoBehaviour
         holdingItem = false;
     }
 
+    public void PutDownHeldItemInInv()
+    {
+        if (heldItem == null || !holdingItem) return;
+        MoveItemToInv(heldItem);
+        StopHoldingItem();
+    }
+
     public void PickupItem(InventorySlot itemData)
     {
         if (itemData == null) return;

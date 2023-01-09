@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Veggie soup
   m_EditorClassIdentifier: 
   hotbarIndex: 5
-  itemSprite: {fileID: 21300000, guid: aa9ec91420e193e4db176e3e493facaf, type: 3}
-  itemName: Grilled cheese w tomato soup
+  itemSprite: {fileID: 21300000, guid: 1faeeb95f7604c746bedbb0e6bd1513b, type: 3}
+  itemName: Vegtable Soup
   recipe:
   - ingredient: potatoe
     quantity: 1

@@ -14,7 +14,6 @@ public class EquipmentScript : MonoBehaviour
     public bool bought = false;
     public int price = 10;
 
-    public bool canInteract = false;
     public bool used = false;
     public bool burnt = false;
     public bool usesFire = true;
@@ -53,6 +52,7 @@ public class EquipmentScript : MonoBehaviour
     public int GreatMealValue = 50;
 
     private float blipFrequencyRate = 0.2f;
+    bool cookingComplete;
 
 
     // Start is called before the first frame update
@@ -80,7 +80,6 @@ public class EquipmentScript : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     protected void Update()
     {
         UpdateUI();
@@ -88,28 +87,41 @@ public class EquipmentScript : MonoBehaviour
         UpdateSmoke();
         UpdateSprite();
         priceText.enabled = false;
-        if (canInteract) {
-            if (!bought) {
-                print("show price text");
-                priceText.enabled = true;
-                priceText.text = $"${price}";
-                if (Input.GetKeyDown(KeyCode.F) && playerInventory.money >= price) {
-                    bought = true;
-                    playerInventory.money -= price;
-                }
-                return;
-            }
-            if (Input.GetKeyDown(KeyCode.F)) {
-                AddItems();
-            }
-            if (!bought) return;
-            if (Input.GetKeyDown(KeyCode.C)) {
-                Cook();
-            }
-            if (Input.GetKeyDown(KeyCode.G)) {
-                TakeItems();
-            }
+        if (CanInteract() && !bought) {
+            priceText.enabled = true;
+            priceText.text = $"${price}";           
         }
+    }
+
+    bool CanInteract()
+    {
+        return Vector2.Distance(transform.position, GameManager.instance.player.transform.position) <= GameManager.instance.playerReach;
+    }
+
+    private void OnMouseOver()
+    {
+        if (Input.GetMouseButtonDown(1)) {
+            TakeItems();
+        }
+    }
+
+    private void OnMouseDown()
+    {
+        if (!bought) {
+            TryToBuy();
+            return;
+        }
+        if (playerInventory.selectedItem != null) AddItems();
+        else if (!cookingComplete) Cook();
+        else TakeItems();
+    }
+
+    void TryToBuy()
+    {
+        if (playerInventory.money <= price) return;
+
+        bought = true;
+        playerInventory.money -= price;
     }
 
     void UpdateCooking() {
@@ -117,6 +129,7 @@ public class EquipmentScript : MonoBehaviour
 
         cookingTimer -= Time.deltaTime;
         if (cookingTimer <= 0 && currentItems.Count == 0) {
+            cookingComplete = true;
             AudioManager.instance.PlayHere(10, source); 
             foreach (ItemObject item in cookingItems) {
                 currentItems.Add(item);
@@ -185,14 +198,6 @@ public class EquipmentScript : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other) {
-        canInteract = true;
-    }
-
-    void OnTriggerExit2D(Collider2D other) {
-        canInteract = false;
-    }
-
     /* 
     DRAG: make it so that for the inventory, the player can drag a UI item to somewhere.
     when the player lets go, if its on an interactive element that accepts it as input AND the player is in range, 
@@ -210,19 +215,20 @@ public class EquipmentScript : MonoBehaviour
     // squares will be constantly added to the side of squares to drag to until mixSlots is reached
     // for now, if the player walks near it, it will automatically take two items from the player
     void AddItems() {
+        cookingComplete = false;
         if (currentItems.Count >= maxSlots || used) return;
         ItemObject item = playerInventory.selectedItem;
         if (item && validTypes.Contains(item.type.ToLower())) {
-            print($"add {item.itemName}");
+            //print($"add {item.itemName}");
             playerInventory.RemoveItem(playerInventory.selectedItem);
             float freq = 1 + currentItems.Count * blipFrequencyRate;
-            print(freq);
+            //print(freq);
             AudioManager.instance.PlayHere(16, source);  
             source.pitch = freq;
             currentItems.Add(item);
         }
         else if (item) {
-            print($"{item.itemName} is invalid");
+            //print($"{item.itemName} is invalid");
         }
     }
 
@@ -230,7 +236,7 @@ public class EquipmentScript : MonoBehaviour
         if (used)
             CheckDishQuality();
         foreach(ItemObject item in currentItems) {
-            print($"Took {item.itemName}");
+            //print($"Took {item.itemName}");
             playerInventory.AddItem(item);
         }
         currentItems.Clear();
@@ -258,6 +264,7 @@ public class EquipmentScript : MonoBehaviour
         for the final check, compare sizes of recipe 
     */
     public void Cook() {
+        cookingComplete = false;
         if (currentItems.Count == 0 || used) return;
         source.pitch = 1;
         Dictionary<string, int> usedIng = new Dictionary<string, int>();
@@ -318,8 +325,8 @@ public class EquipmentScript : MonoBehaviour
                     }
                 }
             }
-            print("used items:");
-            foreach (ItemObject item in usedItems) print(item);
+            //print("used items:");
+            //foreach (ItemObject item in usedItems) print(item);
             // cook IF: used items >= recipeSize 
             bool cook = (usedItems.Count >= recipeSize);
             // however if: overintake & last dish: cook only if every item is used
@@ -328,7 +335,7 @@ public class EquipmentScript : MonoBehaviour
             }
             
             if (cook) {
-                print($"make {dish.itemName}");
+                //print($"make {dish.itemName}");
                 foreach(ItemObject item in usedItems) {
                     currentItems.Remove(item);
                 }

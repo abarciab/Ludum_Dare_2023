@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditorInternal;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class Resident : MonoBehaviour
 {
@@ -36,10 +37,12 @@ public class Resident : MonoBehaviour
     AIDestinationSetter destInterface;
     AIPath pathfinder;
     bool walking;
+    Animator anim;
 
 
     private void Start()
     {
+        anim = GetComponent<Animator>();
         GameManager.instance.residents.Add(this);
         destInterface = GetComponent<AIDestinationSetter>();
         pathfinder = GetComponent<AIPath>();
@@ -58,6 +61,10 @@ public class Resident : MonoBehaviour
         }
         if (pathfinder.reachedEndOfPath && !walking && currentPlaceCooldown <= 0) PickNewDest();
         if (pathfinder.reachedEndOfPath) currentPlaceCooldown -= Time.deltaTime;
+
+        if (pathfinder.velocity.y > 0) anim.SetBool("Up", true);
+        else anim.SetBool("Up", false);
+        anim.SetBool("Walking", Mathf.Abs(pathfinder.velocity.x) > 0 || Mathf.Abs(pathfinder.velocity.y) > 0);
     }
 
     void PickNewDest()
@@ -99,12 +106,11 @@ public class Resident : MonoBehaviour
                 return;
             }
         }
-        if (_item.IsEdible() && hungry) {
+        if (_item.IsEdible()) {
             if (randomConversations.Count > 0) {
                 GameManager.instance.StartConvo(randomConversations[0].dialogue);
                 randomConversations.RemoveAt(0);
             }
-            GameManager.instance.inventory.RemoveItem(_item);
         }
         else {
             GameManager.instance.StartConvo(defaultConvo.dialogue);
@@ -113,8 +119,8 @@ public class Resident : MonoBehaviour
 
     public void Die()
     {
-        print("done dying");
-        DoneDying();   
+        //print("done dying");
+        anim.SetBool("Dead", true);
     }
 
     public void DoneDying()
@@ -128,5 +134,6 @@ public class Resident : MonoBehaviour
     {
         hungry = false;
         GameManager.instance.GainMoney(meal.mealValue);
+        GameManager.instance.inventory.RemoveItem(meal);
     }
 }

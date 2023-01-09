@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1170d66558160d46998d7f735e2abf7, type: 3}
   m_Name: Shepards Pie
   m_EditorClassIdentifier: 
-  hotbarIndex: 5
+  hotbarIndex: 3
   itemSprite: {fileID: 21300000, guid: 39d96718cc7042a49a46c92c2edd4217, type: 3}
   itemName: Shepard's Pie
   recipe:
-  - ingredient: potatoe
+  - ingredient: Potato
     quantity: 1
     overintake: 1
   type: dish
   edible: 1
-  mealValue: 20
+  mealValue: 300
   inrgedientCost: 0

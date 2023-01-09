@@ -29,13 +29,20 @@ public class InventoryScript : MonoBehaviour {
     void AddExistingItemsToHotbar()
     {
         for (int i = 0; i < container.Count; i++) {
-            container[i].item.hotbarIndex = -1;
-            container[i].invSlotIndex = -1;
+            if (container[i].item.itemName.ToLower() == "potato seeds") {
+                container[i].item.hotbarIndex = -1;
+                container[i].invSlotIndex = 8;
+            }
+            else {
+                container[i].item.hotbarIndex = -1;
+                container[i].invSlotIndex = -1;
+            }
         }
 
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < container.Count; j++) {
-                if (container[j].item.hotbarIndex == -1) {
+                //if (container[j].item.itemName.ToLower() == "potato seeds") continue;
+                if (container[j].item.hotbarIndex == -1 && container[j].invSlotIndex == -1) {
                     container[j].item.hotbarIndex = i;
                     break;
                 }
@@ -43,6 +50,13 @@ public class InventoryScript : MonoBehaviour {
         }
     }
 
+    public bool HasItem(string name)
+    {
+        for (int i = 0; i < container.Count; i++) {
+            if (container[i].item.itemName.ToUpper() == name.ToUpper()) return true;
+        }
+        return false;
+    }
 
     public bool AddItem(ItemObject _item, int _amount=1) {
         if (_item == null) return false;

@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1170d66558160d46998d7f735e2abf7, type: 3}
   m_Name: tomato seeds
   m_EditorClassIdentifier: 
-  hotbarIndex: -1
-  itemSprite: {fileID: 21300000, guid: f916272032674b2449ae8741debc3278, type: 3}
+  hotbarIndex: 1
+  itemSprite: {fileID: 21300000, guid: 7f9382a76ab5f294d91b145fba98ca03, type: 3}
   itemName: Tomato Seeds
-  foodValue: 
+  recipe: []
   type: seed
   edible: 0
+  mealValue: 10
+  inrgedientCost: 0

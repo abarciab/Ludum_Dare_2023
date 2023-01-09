@@ -94,7 +94,6 @@ public class HotbarSlotCoordinator : MonoBehaviour
 
     public void ExitHover()
     {
-        print("exiting");
         if (itemData == null || InventoryManager.instance == null || !InventoryManager.instance.gameObject.activeInHierarchy) return;
         InventoryManager.instance.EndToolTip(itemData.item.name);
     }

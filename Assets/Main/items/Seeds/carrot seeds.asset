@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1170d66558160d46998d7f735e2abf7, type: 3}
+  m_Name: carrot seeds
+  m_EditorClassIdentifier: 
+  hotbarIndex: -1
+  itemSprite: {fileID: 21300000, guid: c5074036887bba3418ff29773d9ef604, type: 3}
+  itemName: Carrot Seeds
+  recipe: []
+  type: seed
+  edible: 0
+  mealValue: 10
+  inrgedientCost: 0

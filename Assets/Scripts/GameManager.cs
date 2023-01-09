@@ -120,7 +120,10 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.E)) invParent.SetActive(!invParent.activeInHierarchy);
+        if (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.E)) { 
+            if (InventoryManager.instance != null) InventoryManager.instance.PutDownHeldItemInInv(); 
+            invParent.SetActive(!invParent.activeInHierarchy); 
+        }
         if (Input.GetKeyDown(KeyCode.R)) RestartScene();
 
         ProcessDialogue();

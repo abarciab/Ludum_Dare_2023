@@ -66,17 +66,18 @@ public class Door : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.GetComponent<PlayerController>()) {
-            //Close();
+        if (collision.GetComponent<Resident>()) {
+            player = collision.gameObject;
+            Open();
         }
     }
 
     void Close()
     {
         if (source == null) Setup();
-        if (open) AudioManager.instance.PlayHere(5, source);
+        if (open && player == GameManager.instance.player) AudioManager.instance.PlayHere(5, source);
 
         transform.rotation = closeRot;
         transform.position = closePos;
@@ -86,7 +87,7 @@ public class Door : MonoBehaviour
     void Open()
     {
         if (source == null) Setup();
-        if (!open) AudioManager.instance.PlayHere(5, source);
+        if (!open && player == GameManager.instance.player) AudioManager.instance.PlayHere(5, source);
 
         transform.rotation = openRot;
         transform.position = openPos;
