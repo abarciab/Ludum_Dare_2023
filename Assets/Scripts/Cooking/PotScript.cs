@@ -26,6 +26,12 @@ public class PotScript : EquipmentScript
     void UpdateSprite()
     {
         base.UpdateSprite();
+        if (!bought) {
+            stoveRenderer.color = Color.grey;
+        }
+        else {
+            stoveRenderer.color = Color.white;
+        }
         if (used && usedStoveSprite) {
             stoveRenderer.sprite = usedStoveSprite;
         }
