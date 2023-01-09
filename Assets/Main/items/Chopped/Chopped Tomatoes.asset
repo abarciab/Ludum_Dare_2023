@@ -19,7 +19,7 @@ MonoBehaviour:
   - ingredient: tomato
     quantity: 1
     overintake: 0
-  type: vege
+  type: veggie
   edible: 1
   mealValue: 15
   inrgedientCost: 0

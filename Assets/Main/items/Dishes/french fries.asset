@@ -12,14 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1170d66558160d46998d7f735e2abf7, type: 3}
   m_Name: French Fries
   m_EditorClassIdentifier: 
-  hotbarIndex: -1
+  hotbarIndex: 5
   itemSprite: {fileID: 21300000, guid: 0f6f99febf4c6e741af03ae3ea36bc9d, type: 3}
   itemName: French Fries
   recipe:
   - ingredient: chopped potatoes
     quantity: 1
-    overintake: 0
-  dishPriority: 2
+    overintake: 1
   type: dish
   edible: 1
   mealValue: 20

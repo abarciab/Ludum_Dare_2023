@@ -7546,6 +7546,18 @@ MonoBehaviour:
     volume: 0.03
     pitch: 0.41
     looping: 0
+  - name: music
+    ID: 6
+    clip: {fileID: 8300000, guid: a916610d45f3b6a47815fbbdb306a5e7, type: 3}
+    volume: 0.394
+    pitch: 1
+    looping: 1
+  - name: night jingle
+    ID: 7
+    clip: {fileID: 8300000, guid: 5124aa99f582eac4db9bfbff8b946b89, type: 3}
+    volume: 1
+    pitch: 1
+    looping: 0
   music: {fileID: 519420033}
   global: {fileID: 2135021304}
 --- !u!1001 &473675285790988519

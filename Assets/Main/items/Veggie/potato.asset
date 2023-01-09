@@ -16,7 +16,7 @@ MonoBehaviour:
   itemSprite: {fileID: 21300000, guid: b100d1007098a3a40899884fd1df147b, type: 3}
   itemName: Potato
   recipe: []
-  type: vege
+  type: veggie
   edible: 1
   mealValue: 10
   inrgedientCost: 0

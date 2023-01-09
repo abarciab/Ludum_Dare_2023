@@ -15,7 +15,8 @@ MonoBehaviour:
   hotbarIndex: -1
   itemSprite: {fileID: 21300000, guid: c268e03bb34037546850d5ffaa63459c, type: 3}
   itemName: Milk
-  type: ingr
+  recipe: []
+  type: ingredient
   edible: 0
   mealValue: 10
   inrgedientCost: 15
