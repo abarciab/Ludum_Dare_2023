@@ -15,11 +15,16 @@ MonoBehaviour:
   hotbarIndex: -1
   itemSprite: {fileID: 21300000, guid: 236e37de29e9e004d909d2d1c5a0902b, type: 3}
   itemName: Bacon & Eggs
+  equipment: stove
   recipe:
-  - ingredient: meat
+  - ingredient: {fileID: 11400000, guid: 8ce618fd9076f81409f62dfd064b32f5, type: 2}
     quantity: 1
     overintake: 1
+  - ingredient: {fileID: 11400000, guid: 3001da1551e811048b6a52b510e6dc96, type: 2}
+    quantity: 1
+    overintake: 1
+  description: Tried and true classic!
   type: dish
   edible: 1
-  mealValue: 10
+  mealValue: 100
   inrgedientCost: 0

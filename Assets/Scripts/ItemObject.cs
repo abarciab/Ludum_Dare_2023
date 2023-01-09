@@ -5,9 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public struct Ingredient {
     [SerializeField]
-    public string ingredient;
-    [SerializeField]
-    public ItemObject ingredientItem;
+    public ItemObject ingredient;
     [SerializeField]
     public int quantity;
     [SerializeField]
@@ -21,7 +19,11 @@ public class ItemObject : ScriptableObject
     public Sprite itemSprite;
     public string itemName;
     [SerializeField]
+    public string equipment;
+    [SerializeField]
     public List<Ingredient> recipe = new List<Ingredient>();
+    [SerializeField]
+    public string description;
     /*
     types:
         vege

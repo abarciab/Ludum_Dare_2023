@@ -14,7 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hotbarIndex: -1
   itemSprite: {fileID: 21300000, guid: 9a3fefd5af965f8498676a12f864b0c4, type: 3}
-  itemName: Raw Meat
+  itemName: meat
+  equipment: 
+  recipe: []
+  description: 
   type: meat
   edible: 0
   mealValue: 0

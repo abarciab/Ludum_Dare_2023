@@ -15,11 +15,25 @@ MonoBehaviour:
   hotbarIndex: 5
   itemSprite: {fileID: 21300000, guid: aa9ec91420e193e4db176e3e493facaf, type: 3}
   itemName: Grilled cheese w tomato soup
+  equipment: pot
   recipe:
-  - ingredient: potatoe
+  - ingredient: {fileID: 11400000, guid: 2d3e5ebc59193b04d8def0ad6cee5f30, type: 2}
     quantity: 1
-    overintake: 1
+    overintake: 0
+  - ingredient: {fileID: 11400000, guid: 36aa1d2a57c634f41923f26e33d7a99b, type: 2}
+    quantity: 1
+    overintake: 0
+  - ingredient: {fileID: 11400000, guid: 6f22bf1007901af499cacc56eb054012, type: 2}
+    quantity: 1
+    overintake: 0
+  - ingredient: {fileID: 11400000, guid: 74c6c3ee10e0cad429a696d2ce33dbb8, type: 2}
+    quantity: 1
+    overintake: 0
+  - ingredient: {fileID: 11400000, guid: 1e707287518747d42bf9ffe3b737ff9d, type: 2}
+    quantity: 1
+    overintake: 0
+  description: A hearty meal that reminds one of home.
   type: dish
   edible: 1
-  mealValue: 20
+  mealValue: 500
   inrgedientCost: 0

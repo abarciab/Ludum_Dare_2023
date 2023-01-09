@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: veggie
   m_EditorClassIdentifier: 
   hotbarIndex: -1
-  itemSprite: {fileID: 0}
-  itemName: 
+  itemSprite: {fileID: 21300000, guid: 85556aedd547ea64c9178753c962f493, type: 3}
+  itemName: veggie
   recipe: []
-  type: 
+  type: veggie
   edible: 0
   mealValue: 10
   inrgedientCost: 0

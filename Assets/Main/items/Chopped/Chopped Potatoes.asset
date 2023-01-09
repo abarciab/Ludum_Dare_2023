@@ -15,11 +15,13 @@ MonoBehaviour:
   hotbarIndex: 3
   itemSprite: {fileID: 21300000, guid: 0f6f99febf4c6e741af03ae3ea36bc9d, type: 3}
   itemName: Chopped Potatoes
+  equipment: chopping board
   recipe:
-  - ingredient: potato
+  - ingredient: {fileID: 11400000, guid: ec25feb9afb32fc46ada18ea21bb1a60, type: 2}
     quantity: 1
     overintake: 0
+  description: 
   type: veggie
-  edible: 1
+  edible: 0
   mealValue: 15
   inrgedientCost: 0

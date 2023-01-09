@@ -15,11 +15,13 @@ MonoBehaviour:
   hotbarIndex: -1
   itemSprite: {fileID: 21300000, guid: 08c1e5ca610fb7f498adaac7958f4541, type: 3}
   itemName: Baked Potato
+  equipment: oven
   recipe:
-  - ingredient: veggie
+  - ingredient: {fileID: 11400000, guid: ec25feb9afb32fc46ada18ea21bb1a60, type: 2}
     quantity: 1
     overintake: 1
+  description: Basic dish that warms you right up!
   type: dish
   edible: 1
-  mealValue: 10
+  mealValue: 75
   inrgedientCost: 0

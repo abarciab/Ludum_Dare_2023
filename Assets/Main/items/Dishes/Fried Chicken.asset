@@ -15,11 +15,25 @@ MonoBehaviour:
   hotbarIndex: -1
   itemSprite: {fileID: 21300000, guid: e1da6359fadb6604e8233831a0994cc2, type: 3}
   itemName: Fried Chicken
+  equipment: stove
   recipe:
-  - ingredient: veggie
+  - ingredient: {fileID: 11400000, guid: 8ce618fd9076f81409f62dfd064b32f5, type: 2}
     quantity: 1
-    overintake: 1
+    overintake: 0
+  - ingredient: {fileID: 11400000, guid: 1e707287518747d42bf9ffe3b737ff9d, type: 2}
+    quantity: 1
+    overintake: 0
+  - ingredient: {fileID: 11400000, guid: 6f22bf1007901af499cacc56eb054012, type: 2}
+    quantity: 1
+    overintake: 0
+  - ingredient: {fileID: 11400000, guid: 3001da1551e811048b6a52b510e6dc96, type: 2}
+    quantity: 1
+    overintake: 0
+  - ingredient: {fileID: 11400000, guid: bff8561e70f38ef4cbf6a28e803451d0, type: 2}
+    quantity: 1
+    overintake: 0
+  description: Winner winner chicken dinner!
   type: dish
   edible: 1
-  mealValue: 10
+  mealValue: 300
   inrgedientCost: 0

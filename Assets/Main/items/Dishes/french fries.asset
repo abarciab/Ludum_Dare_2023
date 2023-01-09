@@ -10,16 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1170d66558160d46998d7f735e2abf7, type: 3}
-  m_Name: French Fries
+  m_Name: french fries
   m_EditorClassIdentifier: 
   hotbarIndex: 5
   itemSprite: {fileID: 21300000, guid: c6c52803e3621cd48817ce4c627e9f22, type: 3}
   itemName: French Fries
+  equipment: oven
   recipe:
-  - ingredient: chopped potatoes
+  - ingredient: {fileID: 11400000, guid: be4af0fb032ca244fa17447d581cada7, type: 2}
     quantity: 1
     overintake: 1
+  description: Lovely crunchy taste!
   type: dish
   edible: 1
-  mealValue: 20
+  mealValue: 100
   inrgedientCost: 0

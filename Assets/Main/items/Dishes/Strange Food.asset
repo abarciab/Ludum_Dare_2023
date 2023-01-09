@@ -15,7 +15,9 @@ MonoBehaviour:
   hotbarIndex: -1
   itemSprite: {fileID: 21300000, guid: 0f6f99febf4c6e741af03ae3ea36bc9d, type: 3}
   itemName: Strange Food
+  equipment: 
   recipe: []
+  description: ...Food? I think?
   type: dish
   edible: 1
   mealValue: -10

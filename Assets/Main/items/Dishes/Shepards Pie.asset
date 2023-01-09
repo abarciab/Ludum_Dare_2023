@@ -15,10 +15,18 @@ MonoBehaviour:
   hotbarIndex: 3
   itemSprite: {fileID: 21300000, guid: 39d96718cc7042a49a46c92c2edd4217, type: 3}
   itemName: Shepard's Pie
+  equipment: oven
   recipe:
-  - ingredient: Potato
+  - ingredient: {fileID: 11400000, guid: be4af0fb032ca244fa17447d581cada7, type: 2}
     quantity: 1
-    overintake: 1
+    overintake: 0
+  - ingredient: {fileID: 11400000, guid: 74c6c3ee10e0cad429a696d2ce33dbb8, type: 2}
+    quantity: 1
+    overintake: 0
+  - ingredient: {fileID: 11400000, guid: 8ce618fd9076f81409f62dfd064b32f5, type: 2}
+    quantity: 1
+    overintake: 0
+  description: Rumor says Shepard doesn't actually like pie...
   type: dish
   edible: 1
   mealValue: 300

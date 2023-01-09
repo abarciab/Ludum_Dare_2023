@@ -296,7 +296,7 @@ public class EquipmentScript : MonoBehaviour
                 // this checks for all the name coinciding first
                 foreach (Ingredient ingr in dish.recipe) {
                     bool validName = (
-                        itemName==ingr.ingredient.ToLower()
+                        item==ingr.ingredient
                         && (!usedIng.ContainsKey(itemName) || (usedIng.ContainsKey(itemName) && (usedIng[itemName] < ingr.quantity || ingr.overintake)))
                     );
                     if (validName) {
@@ -312,7 +312,7 @@ public class EquipmentScript : MonoBehaviour
                     string itemType = item.type.ToLower();
                     foreach (Ingredient ingr in dish.recipe) {
                         bool validType = (
-                            itemType==ingr.ingredient.ToLower()
+                            itemType==ingr.ingredient.itemName.ToLower()
                             && (!usedIng.ContainsKey(itemType) || (usedIng.ContainsKey(itemType) && (usedIng[itemType] < ingr.quantity || ingr.overintake)))
                         );
                         if (validType) {
