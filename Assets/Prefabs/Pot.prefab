@@ -177,7 +177,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 449789493, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2026932480163923148, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
       propertyPath: m_Sprite
@@ -327,6 +327,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pot
       objectReference: {fileID: 0}
+    - target: {fileID: 3581343138713935139, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7094690731460944664, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 0.43
@@ -338,6 +342,17 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 2026932480163923151, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
+--- !u!114 &98298899886321804 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5811368298400548127, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
+  m_PrefabInstance: {fileID: 5907344994261841299}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5609803573118890304 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2026932480163923155, guid: 4cfc502cb200dee4aa5aa50b6cb5c9cc, type: 3}
@@ -357,6 +372,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSlots: 5
   maxDishes: 1
+  bought: 0
+  price: 10
   canInteract: 0
   used: 0
   burnt: 0
@@ -376,9 +393,11 @@ MonoBehaviour:
   - ingredient
   - dish
   UIContainer: []
+  priceText: {fileID: 98298899886321804}
   cookingTimer: 0
   baseCookingTime: 7
   burntTimer: 15
+  GreatMealValue: 50
   usedStoveSprite: {fileID: 21300000, guid: 195f7e3a1efeda944977d0b8dddd82a3, type: 3}
 --- !u!4 &5609803573118890334 stripped
 Transform:

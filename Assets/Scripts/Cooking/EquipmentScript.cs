@@ -38,6 +38,8 @@ public class EquipmentScript : MonoBehaviour
     private Transform UIBox;
     private GameObject UISquare;
 
+    [SerializeField] public TextMeshProUGUI priceText;
+
     public float cookingTimer = 0f;
     public float baseCookingTime = 5f;
     public float burntTimer = 10f;
@@ -85,15 +87,20 @@ public class EquipmentScript : MonoBehaviour
         UpdateCooking();
         UpdateSmoke();
         UpdateSprite();
+        priceText.enabled = false;
         if (canInteract) {
-            // if player hits f while in collision, can interaact with the object
-            if (Input.GetKeyDown(KeyCode.F)) {
-                if (!bought && playerInventory.money >= price) {
+            if (!bought) {
+                print("show price text");
+                priceText.enabled = true;
+                priceText.text = $"${price}";
+                if (Input.GetKeyDown(KeyCode.F) && playerInventory.money >= price) {
                     bought = true;
                     playerInventory.money -= price;
                 }
-                else
-                    AddItems();
+                return;
+            }
+            if (Input.GetKeyDown(KeyCode.F)) {
+                AddItems();
             }
             if (!bought) return;
             if (Input.GetKeyDown(KeyCode.C)) {
