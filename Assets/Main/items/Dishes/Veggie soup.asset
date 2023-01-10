@@ -19,16 +19,16 @@ MonoBehaviour:
   recipe:
   - ingredient: {fileID: 11400000, guid: f2af8417dc4a7c840abf9bf45d771041, type: 2}
     quantity: 2
-    overintake: 1
+    overintake: 0
   - ingredient: {fileID: 11400000, guid: ec25feb9afb32fc46ada18ea21bb1a60, type: 2}
     quantity: 1
-    overintake: 1
+    overintake: 0
   - ingredient: {fileID: 11400000, guid: 3ffff7d90025b2749840d599f9c4bd5b, type: 2}
     quantity: 1
-    overintake: 1
+    overintake: 0
   - ingredient: {fileID: 11400000, guid: 6f22bf1007901af499cacc56eb054012, type: 2}
     quantity: 1
-    overintake: 1
+    overintake: 0
   description: '1. Grow 1 tomato, 1 potato, and 2 carrots
 
     2. Buy milk from the

@@ -19,10 +19,10 @@ MonoBehaviour:
   recipe:
   - ingredient: {fileID: 11400000, guid: 8ce618fd9076f81409f62dfd064b32f5, type: 2}
     quantity: 1
-    overintake: 1
+    overintake: 0
   - ingredient: {fileID: 11400000, guid: 3001da1551e811048b6a52b510e6dc96, type: 2}
     quantity: 1
-    overintake: 1
+    overintake: 0
   description: '1. Buy meat from catalog
 
     2. Chop meat at cutting board
