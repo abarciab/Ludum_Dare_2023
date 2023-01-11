@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1170d66558160d46998d7f735e2abf7, type: 3}
   m_Name: Veggie stir fry
   m_EditorClassIdentifier: 
-  hotbarIndex: -1
+  hotbarIndex: 4
   itemSprite: {fileID: 21300000, guid: 070d5a78d6c46b648af7ac790ebea8af, type: 3}
   itemName: Veggie Stir Fry
   equipment: Stove
@@ -31,5 +31,5 @@ MonoBehaviour:
     Combine everything on the stove'
   type: dish
   edible: 1
-  mealValue: 100
+  mealValue: 75
   inrgedientCost: 0

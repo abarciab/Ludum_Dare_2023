@@ -36,5 +36,5 @@ MonoBehaviour:
     combine potato, carrot, and milk in the oven'
   type: dish
   edible: 1
-  mealValue: 75
+  mealValue: 150
   inrgedientCost: 0

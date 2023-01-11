@@ -37,5 +37,5 @@ MonoBehaviour:
     3. Combine all ingredients in a pot'
   type: dish
   edible: 1
-  mealValue: 100
+  mealValue: 300
   inrgedientCost: 0

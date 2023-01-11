@@ -31,5 +31,5 @@ MonoBehaviour:
     potatoes and milk in a pot'
   type: dish
   edible: 1
-  mealValue: 100
+  mealValue: 150
   inrgedientCost: 0

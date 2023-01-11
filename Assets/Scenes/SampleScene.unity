@@ -3598,10 +3598,12 @@ MonoBehaviour:
       harvest.
   - Main: Cook a dish for a resident
     details:
-    - With a potato selected, go to a cutting board and left click to place the potato
-    - Click again to chop, and once more when complete to pickup the chopped potato
-    - Place the chopped potato in the oven and click to make french fries - be careful
-      not to overcook!
+    - With a potato selected, go to a cutting board and either left click or press
+      F to place the potato
+    - Click again or press C to chop, and click or hit G when complete to pickup
+      the chopped potato
+    - Place the chopped potato in the oven and click or press C to make french fries
+      - be careful not to overcook!
   - Main: 'Feed a dish to a resident '
     details:
     - "After cooking a dish, find a resident that hasn\u2019t eaten yet"

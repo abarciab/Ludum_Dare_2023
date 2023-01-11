@@ -26,5 +26,5 @@ MonoBehaviour:
     or on the stove'
   type: dish
   edible: 1
-  mealValue: 50
+  mealValue: 75
   inrgedientCost: 0

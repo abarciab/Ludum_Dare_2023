@@ -33,5 +33,5 @@ MonoBehaviour:
     4. combine chopped meat and eggs at stove'
   type: dish
   edible: 1
-  mealValue: 100
+  mealValue: 150
   inrgedientCost: 0

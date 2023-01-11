@@ -229,7 +229,6 @@ public class EquipmentScript : MonoBehaviour
     // squares will be constantly added to the side of squares to drag to until mixSlots is reached
     // for now, if the player walks near it, it will automatically take two items from the player
     void AddItems() {
-        cookingComplete = false;
         if (currentItems.Count >= maxSlots || used) return;
         ItemObject item = playerInventory.selectedItem;
         if (item && validTypes.Contains(item.type.ToLower())) {
@@ -247,9 +246,11 @@ public class EquipmentScript : MonoBehaviour
     }
 
     void TakeItems() {
+        print($"used:{used}, complete:{cookingComplete}");
         if (used && !cookingComplete) {
             return;
         }
+        cookingComplete = false;
         if (used)
             CheckDishQuality();
         foreach(ItemObject item in currentItems) {
@@ -281,7 +282,6 @@ public class EquipmentScript : MonoBehaviour
         for the final check, compare sizes of recipe 
     */
     public void Cook() {
-        cookingComplete = false;
         if (currentItems.Count == 0 || used) return;
         source.pitch = 1;
         Dictionary<string, int> usedIng = new Dictionary<string, int>();
